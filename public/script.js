@@ -440,7 +440,7 @@ function renderSIGN_UP_FORM(element){
 
 				//  ADDING THIS INTO DATABASEE
 				try{
-					const response = await fetch('http://localhost:4000/api/signup', {
+					const response = await fetch('/api/signup', {
 						method: 'post',
 						headers:{
 							'Content-Type': 'application/json'
@@ -483,7 +483,7 @@ function renderSIGN_UP_FORM(element){
 
  			try{
 
-				const response = await fetch('http://localhost:4000/api/credentials', {
+				const response = await fetch('/api/credentials', {
 					method: 'post', 
 					headers:{
 						'Content-Type': 'application/json'
