@@ -45,7 +45,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/travel_app')
+mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log('connected to mongoose successfully '))
     .catch(err => console.error('error message : ', err));
 
@@ -78,7 +78,7 @@ const ITINERARY = mongoose.model('ITINERARY', ActivitySchema);
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:4000/auth/google/callback',
+    callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:4000/auth/google/callback',
     passReqToCallback: true
 },
 async (req, accessToken, refreshToken, profile, done) => {
@@ -1170,6 +1170,11 @@ function generateCryptoname(){
 
 
 
-app.listen(4000, () => {
-    console.log('Server running at port 4000');
-});
+if (require.main === module) {
+    const port = process.env.PORT || 4000;
+    app.listen(port, () => {
+        console.log(`Server running at port ${port}`);
+    });
+}
+
+module.exports = app;
