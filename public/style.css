@@ -1,0 +1,16 @@
+#main-nav .scrolled{
+	background-color: whitesmoke;
+	font-color: black;
+}
+
+.page-disabled {
+    pointer-events: none;
+    cursor: wait !important;
+}
+
+.baloo-bhai-2-<uniquifier> {
+  font-family: "Baloo Bhai 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title><%= activity.name %></title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="bg-slate-300 min-h-screen p-5 baloo-bhai-2-<uniquifier>">
+
+    <h1 class="text-5xl font-bold text-center m-10">
+        <%= activity.name %>
+    </h1>
+
+
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-3xl p-5 sm:p-8 md:p-10">
+
+        <p class="text-xl mb-3">
+            <strong>Category:</strong>
+            <%= activity.category %>
+        </p>
+
+        <p class="text-xl mb-8">
+            <strong>Type:</strong>
+            <%= activity.type %>
+        </p>
+
+
+        <h2 class="text-3xl font-bold mb-3">
+            About
+        </h2>
+
+        <p class="text-lg mb-8">
+            <%= activity.description %>
+        </p>
+
+        <div 
+            class="mb-10 h-64 sm:h-80 md:h-100 w-full bg-no-repeat bg-center bg-cover rounded-3xl"
+            style="background-image: url('<%= activityImage %>');">
+        </div>
+
+        <h2 class="text-3xl font-bold mb-3">
+            History
+        </h2>
+
+        <p class="text-lg mb-8">
+            <%= activity.history %>
+        </p>
+
+
+        <h2 class="text-3xl font-bold mb-3">
+            Why Visit?
+        </h2>
+
+        <p class="text-lg mb-8">
+            <%= activity.why_visit %>
+        </p>
+
+
+        <h2 class="text-3xl font-bold mb-3">
+            Tips
+        </h2>
+
+        <p class="text-lg">
+            <%= activity.tips %>
+        </p>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Travel Itinerary</title>
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+	<link rel="stylesheet" href="/style.css"> 
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body class="flex items-center bg-slate-300 flex-col p-2 transition-all baloo-bhai-2-<uniquifier>">
+
+	<%- include('partials/navbar') %>
+
+	<div class="h-100 sm:h-125 lg:h-150 w-full p-3 flex flex-col justify-start items-center text-white bg-cover bg-no-repeat bg-center rounded-2xl" 
+	     style="background-image: url('./images/image_bg_2.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover; transition: background-image 1s ease-in-out;" id="bg_image">
+	     <a href="#form" class="bg-gray-800 border-3 border-white text-center text-white transition-all font-semibold cursor-pointer px-5 py-3 mb-20 rounded-4xl hover:bg-fuchsia-600 hover:text-xl hover:transition-all" id="custom_plan">PLAN TRAVEL</a>
+	</div>
+
+	
+
+	<div class="border-7 border-green-400 w-full max-w-200 rounded-4xl mt-10 p-5 sm:p-10 md:p-20 flex flex-col items-center transition-[transform] font-semibold text-2xl" style="background: linear-gradient(#ffffff, #78cdff, #a8fff0, #314031);" id="form">
+		
+		<input id="location" class="border-7 border-green-900 rounded-xl p-4 m-2 w-full focus:bg-black focus:text-green-200" placeholder="your current location">
+
+		<div class="relative w-full">
+
+		    <input
+		        id="destination"
+		        class="border-7 border-green-900 rounded-xl p-5 m-2 w-full"
+		        placeholder="where you wanna go?"
+		        autocomplete="off"
+		    >
+
+		    <div
+		        id="suggestions"
+		        class="absolute left-2 right-2 top-full bg-white text-black rounded-xl shadow-xl z-50 hidden"
+		    ></div>
+
+		</div>
+		
+		<select id="persona" class="bg-purple-500 pt-3 pb-3 pr-6 pl-6 rounded-2xl m-3 text-white cursor-pointer transition-all hover:bg-black hover:text-[cyan] hover:text-3xl hover:border-[lime]">
+			<option>Backpacker</option>
+			<option>Luxury</option>
+			<option>Family</option>
+		</select>
+
+		<select id="duration" class="cursor-pointer border-3 border-white p-2 rounded-xl hover:bg-fuchsia-400 hover:text-white hover:text-3xl transition-all">
+		    <option value="1">1 Day</option>
+		    <option value="2">2 Days</option>
+		    <option value="3">3 Days</option>
+		    <option value="4">4 Days</option>
+		    <option value="5">5 Days</option>
+		    <option value="7">7 Days</option>
+		</select>
+
+		<button class="pt-2 pb-2 pr-6 pl-6 m-5 cursor-pointer bg-gray-500
+		text-white rounded-2xl transition-all hover:bg-black hover:text-[lime] italic hover:text-3xl" id="submit_btn">
+			
+			<span id="submit_text">Submit</span>
+
+		</button>
+    	<span id="loader" class="fixed inset-10 hidden transition-all flex flex-cols items-center justify-center bg-lime-100/40 backdrop-blur rounded-2xl z-[100] w-full"
+    		style="background-image: url('/images/loading.gif'); background-repeat: no-repeat; background-size: 120px; background-position: center;">
+    		LOADING...
+    	</span>
+		
+	</div>
+
+	<div id="Headers" class="flex flex-col items-center justify-center p-5 rounded-2xl m-5 bg-purple-500 text-2xl font-semibold italic"></div>
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4 w-full h-auto bg-gray-500 text-white rounded-xl text-2xl font-semibold italic" id="results"></div>
+</body>
+<script src="/script.js"></script>
+</html>

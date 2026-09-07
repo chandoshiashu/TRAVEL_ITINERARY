@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 1. Injecting dynamic variables from the backend -->
+    <title>Contact Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- 2. Linking static CSS files sitting inside your public folder -->
+    <link rel="stylesheet" href="/style.css"> 
+</head>
+<body class="flex items-center bg-slate-300 flex-col p-2 transition-all">
+
+    <!-- 3. OPTIONAL: Including a reusable navbar snippet so you don't copy-paste it on every page -->
+    <%- include('partials/navbar') %>
+
+    <div class="contact-container w-200 rounded-xl font-semibold text-2xl text-gray-800 flex flex-col items-center bg-green-200 m-10 p-5">
+        <h1 class="m-2 bg-green-100 p-2">Contact Our Team</h1>
+        <p class="m-2 bg-green-100 p-2">Have questions? Drop us a line below.</p>
+
+        <!-- 4. A standard HTML Form that POSTs data back to your Node.js backend -->
+        <form action="/contact" method="POST" class="flex flex-col items-center justify-center p-5 font-semibold text-2xl rounded-md m-3 bg-green-100">
+            <div class="form-group m-2">
+                <label for="name">NAME :</label>
+                <input type="text" id="name" name="name" class="border-3 border-gray-400 rounded-md p-2" required>
+            </div>
+
+            <div class="form-group m-2">
+                <label for="email">EMAIL:</label>
+                <input type="email" id="email" name="email" class="border-3 border-gray-400 rounded-md p-2" required>
+            </div>
+
+            <div class="form-group flex flex-col items-center justify-center">
+                <label for="message">MESSAGE:</label>
+                <textarea id="message" name="message" rows="5" class="border-4 border-gray-400 m-2 rounded-xl w-100" required></textarea>
+            </div>
+
+            <button type="submit" class="border-3 border-gray-400 pt-2 pb-2 pl-4 pr-4 m-5 rounded-xl cursor-pointer hover:bg-black transition-all hover:text-[lime] hover:border-5 hover:border-[lime]">Send Message</button>
+        </form>
+    </div>
+
+    <!-- 5. Linking client-side JavaScript sitting inside your public folder -->
+</body>
+<script src="/script.js"></script>
+</html>
