@@ -301,7 +301,7 @@ app.post('/api/credentials', async (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.render('index', {title: 'travel plan home', username:req.session.username});
+    res.render('index', {title: 'Roamio', username:req.session.username});
 });
 
 app.get('/contact', (req, res) => {
