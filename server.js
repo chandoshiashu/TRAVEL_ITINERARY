@@ -44,13 +44,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-console.log("MONGODB_URL exists:", !!process.env.MONGODB_URL);
-
-mongoose.connect(process.env.MONGODB_URL)
-    .then(() => console.log("MongoDB connected successfully"))
-    .catch(err => console.error("MongoDB connection FAILED:", err));
-
-
 const UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
@@ -85,6 +78,8 @@ passport.use(new GoogleStrategy({
 },
 async (req, accessToken, refreshToken, profile, done) => {
     try{
+        await connectDB();
+
         console.log("Google username:", profile.displayName);
 
         // Now req exists
@@ -123,6 +118,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try{
+        await connectDB();
         const user = await User.findById(id)
         done(null, user);
     }catch(error){
@@ -193,7 +189,7 @@ app.get('/api/check_DBUSER', async (req, res) => {
 
     const {username} = req.query;
     try{
-
+        await connectDB();
         const existingUser = await User.findOne({ username });
         if(existingUser){
             return res.json({
@@ -238,6 +234,8 @@ app.get('/api/crypto_id', (req, res) => {
 
 app.post('/api/signup', async (req, res) => {
     try {
+        await connectDB();
+
         const { username, password } = req.body;
 
         const cleanUsername = username ? username.trim() : "";
@@ -270,6 +268,8 @@ app.post('/api/signup', async (req, res) => {
 
 app.post('/api/credentials', async (req, res) => {
     try{
+
+        await connectDB();
 
         const { username, password } = req.body;
 
@@ -360,6 +360,9 @@ app.get('/api/search-place', async (req, res) => {
 app.get('/api/get_itineraries', async (req, res) => {
     console.log("Reached itinerary");
     try {
+
+        await connectDB();
+
         console.log("REQ.COOKIES =", req.cookies);
 
         if (!req.cookies?.username && !req.isAuthenticated()) {
@@ -535,6 +538,8 @@ app.post('/api/generate-itinerary', async (req, res) => {
 
     try {
 
+        await connectDB();
+
         console.log("Request received:", req.body);
 
         const { username_available, current_location, destination, persona, duration } = req.body;
@@ -612,6 +617,21 @@ app.post('/api/generate-itinerary', async (req, res) => {
         });
     }
 });
+
+
+let dbConnection = null;
+
+async function connectDB() {
+    if (mongoose.connection.readyState === 1) {
+        return;
+    }
+
+    if (!dbConnection) {
+        dbConnection = mongoose.connect(process.env.MONGODB_URL);
+    }
+
+    await dbConnection;
+}
 
 
 
