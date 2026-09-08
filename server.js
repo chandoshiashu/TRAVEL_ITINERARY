@@ -44,10 +44,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+console.log("MONGODB_URL exists:", !!process.env.MONGODB_URL);
 
 mongoose.connect(process.env.MONGODB_URL)
-    .then(() => console.log('connected to mongoose successfully '))
-    .catch(err => console.error('error message : ', err));
+    .then(() => console.log("MongoDB connected successfully"))
+    .catch(err => console.error("MongoDB connection FAILED:", err));
+
 
 const UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
