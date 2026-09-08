@@ -462,7 +462,7 @@ function renderSIGN_UP_FORM(element){
 
 				} catch(error){
 					console.error("Network Error:", error);
-					alert("Could not reach the backend server. Make sure it is running on port 4000!");
+					alert("Could not reach the backend server.");
 				}
 
 
