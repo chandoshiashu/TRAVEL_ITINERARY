@@ -803,10 +803,24 @@ function Profile_SetUp(username){
 }
 
 
-function openActivity(name, image_url) {
 
-    window.location.href =
-        `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
+
+async function openActivity(name, image_url) {
+
+    showLoader();
+
+    try {
+	    window.location.href =
+	        `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
+
+    } catch (error) {
+
+        console.error(error);
+
+    } finally {
+
+        hideLoader();
+    }
 }
 
 
