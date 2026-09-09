@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const nodemailer = require("nodemailer");
+const MongoStore = require('connect-mongo');
 
 // FOR GOOGLE LOGIN SETUP
 const passport = require('passport');
@@ -35,7 +36,7 @@ const transporter = nodemailer.createTransport({
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+app.set('trust-proxy', 1);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +47,16 @@ app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URL,
+        collectionName: 'sessions'
+    }),
+    cookie: {
+        secure: process.env.NODE_ENV === 'production', // HTTPS only in prod
+        sameSite: 'lax',
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days, pick whatever you want
+    }
 }));
 
 app.use(passport.initialize());
@@ -352,7 +362,7 @@ app.post('/api/credentials', async (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.render('index', {title: 'Roamio', username:req.session.username});
+    res.render('index', {title: 'Roamio', username: req.user ? req.user.username : null});
 });
 
 app.get('/contact', (req, res) => {
@@ -636,7 +646,7 @@ app.post('/api/generate-itinerary', async (req, res) => {
             AnonymousUsername: req.cookies.username,
             Username: username_available,
             Destination: destinationPoint.name,
-            Date: now.toLocaleString(),
+            Date: now,
             Weather: weather.label,
             A_Bunch: activities
         });
@@ -668,18 +678,21 @@ app.post('/api/generate-itinerary', async (req, res) => {
 });
 
 
-let dbConnection = null;
+let cached = global._mongooseConn;
+if (!cached) {
+    cached = global._mongooseConn = { conn: null, promise: null };
+}
 
 async function connectDB() {
-    if (mongoose.connection.readyState === 1) {
-        return;
+    if (cached.conn) return cached.conn;
+    if (!cached.promise) {
+        cached.promise = mongoose.connect(process.env.MONGODB_URL, {
+            maxPoolSize: 10,
+            bufferCommands: false,
+        });
     }
-
-    if (!dbConnection) {
-        dbConnection = mongoose.connect(process.env.MONGODB_URL);
-    }
-
-    await dbConnection;
+    cached.conn = await cached.promise;
+    return cached.conn;
 }
 
 
