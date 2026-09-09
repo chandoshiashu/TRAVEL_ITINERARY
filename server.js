@@ -9,7 +9,8 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const nodemailer = require("nodemailer");
-const MongoStore = require('connect-mongo');
+const {MongoStore} = require('connect-mongo');
+console.log(MongoStore)
 
 // FOR GOOGLE LOGIN SETUP
 const passport = require('passport');
