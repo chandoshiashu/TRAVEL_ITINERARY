@@ -304,6 +304,7 @@ function render_main_features(element){
 
 	if (google_sign_in) {
 		google_sign_in.addEventListener('click', () => {
+			showLoader();
     		document.body.classList.remove('overflow-hidden');
 			localStorage.removeItem("modelState");
 			element.remove();
@@ -460,6 +461,8 @@ function renderSIGN_UP_FORM(element){
 
 				//  ADDING THIS INTO DATABASEE
 				try{
+
+					showLoader();
 					const response = await fetch('/api/signup', {
 						method: 'post',
 						headers:{
@@ -472,6 +475,8 @@ function renderSIGN_UP_FORM(element){
 					});
 
 					const data = await response.json();
+
+					hideLoader();
 					if(data.success){
 						console.log("User Registered Successfully", {username: user.value, password: pass.value});
 						alert("registration Successfull");
@@ -653,6 +658,7 @@ function Profile_SetUp(username){
 				}
 
 				try{
+					showLoader();
 					const response = await fetch(
 						    `/api/get_itineraries?username=${encodeURIComponent(localStorage.getItem("username"))}`
 						);
@@ -756,6 +762,9 @@ function Profile_SetUp(username){
 					console.log("Error recieved from get itineraries ");
 					console.log(error);
 				}
+				finally{
+					hideLoader();
+				}
 
 			});
 		}
@@ -798,6 +807,29 @@ function openActivity(name, image_url) {
 
     window.location.href =
         `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
+}
+
+
+function showLoader() {
+    const loader = document.getElementById('loader');
+
+    if (!loader) return;
+
+    loader.classList.remove('hidden');
+
+    document.body.classList.add('overflow-hidden');
+    document.body.classList.add('page-disabled');
+}
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+
+    if (!loader) return;
+
+    loader.classList.add('hidden');
+
+    document.body.classList.remove('overflow-hidden');
+    document.body.classList.remove('page-disabled');
 }
 
 
@@ -906,9 +938,7 @@ if(submit_btn){
 
 		submit_btn.disabled = true;
 		submit_text.textContent = "Generating...";
-		loader.classList.remove('hidden');
-		document.body.classList.add('overflow-hidden');
-		document.body.classList.add('page-disabled')
+		showLoader();
 
 	    const current_location =
 	        document.getElementById("location").value;
@@ -1025,9 +1055,9 @@ if(submit_btn){
 			results.innerHTML = itineraryHTML;
 			submit_btn.disabled = false;
 			submit_text.textContent = "Submit";
-			loader.classList.add('hidden');
-			document.body.classList.remove('overflow-hidden');
-			document.body.classList.remove('page-disabled')
+
+
+			hideLoader();
 
 	    })
 
@@ -1036,9 +1066,8 @@ if(submit_btn){
 	        console.error("Fetch error:", error);
 	        submit_btn.disabled = false;
 			submit_text.textContent = "Submit";
-			loader.classList.add('hidden');
-			document.body.classList.remove('overflow-hidden');
-			document.body.classList.remove('page-disabled')
+
+			hideLoader();
 
 	    });
 
