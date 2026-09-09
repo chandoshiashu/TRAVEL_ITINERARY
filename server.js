@@ -152,16 +152,17 @@ app.get('/auth/google',
 );
 
 app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        failureRedirect: '/home'
-    }),
+    passport.authenticate('google', { failureRedirect: '/home', failWithError: true }),
     (req, res) => {
         console.log("LOGGED IN USER:", req.user);
-        console.log("SESSION:", req.session);
-        console.log("AUTHENTICATED:", req.isAuthenticated());
+        res.redirect('/home');
+    },
+    (err, req, res, next) => {
+        console.error("GOOGLE AUTH FAILED:", err); // ← this will show the real reason
         res.redirect('/home');
     }
 );
+
 
 app.get('/api/current-user', (req, res) => {
     if (req.user) {
