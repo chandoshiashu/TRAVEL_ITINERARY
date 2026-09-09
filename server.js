@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const nodemailer = require("nodemailer");
 
 // FOR GOOGLE LOGIN SETUP
 const passport = require('passport');
@@ -23,7 +24,13 @@ const ai = new GoogleGenAI({
     apiKey: GEMINI_API_KEY
 });
 
-
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.CONTACT_EMAIL,
+        pass: process.env.CONTACT_EMAIL_PASSWORD
+    }
+});
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -31,6 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(cookieParser());
@@ -231,6 +239,47 @@ app.get('/api/crypto_id', (req, res) => {
     });
 });
 
+
+app.post('/contact', async (req, res) => {
+    try {
+        const { name, email, message } = req.body;
+
+        const mailOptions = {
+            from: process.env.CONTACT_EMAIL,
+            to: process.env.CONTACT_EMAIL,
+            replyTo: email,
+            subject: `Roamio Contact Message from ${name}`,
+            text: `
+                Name: ${name}
+                Email: ${email}
+
+                Message:
+                ${message}
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        console.log("Contact message sent successfully");
+
+        res.send(`
+            <script>
+                alert("Your message has been sent successfully!");
+                window.location.href = "/contact";
+            </script>
+        `);
+
+    } catch (error) {
+        console.error("Contact email error:", error);
+
+        res.status(500).send(`
+            <script>
+                alert("Sorry, there was a problem sending your message.");
+                window.location.href = "/contact";
+            </script>
+        `);
+    }
+});
 
 app.post('/api/signup', async (req, res) => {
     try {

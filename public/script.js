@@ -29,11 +29,11 @@ if (localStorage.getItem("darkMode") === "true") {
 
 function enableDarkMode(){
 
-	document.body.style.backgroundColor = "#322e33";
+	document.body.style.backgroundColor = "#253745";
 	const nav_element = document.getElementById('main-nav');
 
 	if(nav_element){
-		nav_element.style.backgroundColor = "#333f02";
+		nav_element.style.backgroundColor = "#06141B";
 		nav_element.style.color = 'white';
 	}
 
@@ -41,13 +41,18 @@ function enableDarkMode(){
 	const bg_img_element = document.getElementById('bg_image');
 
 	if(bg_img_element){
-		bg_img_element.style.opacity = '50%';
+		bg_img_element.style.opacity = '80%';
 		bg_img_element.style.backgroundColor = 'gray';
 	}
 
 	const form_element = document.getElementById('form');
 	if(form_element){
-		form_element.style.background = 'linear-gradient(#5f4848, #cec32f, #53658c, #040504)';
+		form_element.style.background = 'linear-gradient(#9BA8AB, #4A5C6A, #253745, #11212D)';
+	}
+
+	const sign_up_box = document.getElementById("sign_up_box")
+	if(sign_up_box){
+		sign_up_box.style.backgroundColor = 'black';
 	}
 
 	const dark_mode_btn = document.getElementById('dark_btn');
@@ -58,7 +63,7 @@ function enableDarkMode(){
 
 
 function disableDarkMode(){
-	document.body.style.backgroundColor = "var(--color-slate-300)";
+	document.body.style.backgroundColor = "#CFE1B9";
 		
 
 	const nav_element = document.querySelector('nav');
@@ -66,11 +71,11 @@ function disableDarkMode(){
 	if(nav_element){
 
 		if(window.scrollY > 50){
-			nav_element.style.backgroundColor = "whitesmoke";
+			nav_element.style.backgroundColor = "#E7F5DC";
 			nav_element.style.color = 'black';
 		}
 		else{
-			nav_element.style.backgroundColor = "#ff3f3f";
+			nav_element.style.backgroundColor = "#728156";
 		}
 
 
@@ -82,7 +87,12 @@ function disableDarkMode(){
 
 		const form_element = document.getElementById('form');
 		if(form_element){
-			form_element.style.background = 'linear-gradient(#ffffff, #78cdff, #a8fff0, #314031)';
+			form_element.style.background = 'linear-gradient(#E7F5DC, #B6C99B, #98A77C, #728156)';
+		}
+
+		const sign_up_box = document.getElementById("sign_up_box")
+		if(sign_up_box){
+			sign_up_box.style.backgroundColor = 'darkblue';
 		}
 
 		const dark_mode_btn = document.getElementById('dark_btn');
@@ -106,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 		const element = document.createElement('div');
 		element.id = "sign_up_box";
-		element.classList.add('border','bg-lime-200/30','text-shadow-lg','w-[calc(100%-1rem)]','sm:w-[90%]','max-w-3xl',
+		element.classList.add('border','bg-blue-700','text-shadow-lg','w-[calc(100%-1rem)]','sm:w-[90%]','max-w-3xl',
 								'max-h-[calc(100dvh-1rem)]','sm:max-h-[calc(100dvh-3rem)]','fixed','inset-2','sm:inset-6',
 								'z-[100]','rounded-2xl','backdrop-blur-md','flex','flex-col','items-center','justify-start',
 								'overflow-y-auto','p-4','sm:p-8','text-base','sm:text-xl','font-semibold','transition-all',
@@ -116,6 +126,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         element.style.color = 'honeydew';
         document.body.appendChild(element);
         document.body.classList.add('overflow-hidden');
+
+        if(localStorage.getItem("darkMode") === "true"){
+			element.classList.remove("bg-blue-700");
+			element.classList.add("bg-black");
+		}
+
 
 
         setTimeout(() => {
@@ -212,7 +228,7 @@ if(sign_up){
 
 		const element = document.createElement('div');
 		element.id = "sign_up_box";
-		element.classList.add('border','bg-lime-200/30','text-shadow-lg','w-[calc(100%-1rem)]','sm:w-[90%]','max-w-3xl',
+		element.classList.add('border','bg-blue-700','text-shadow-lg','w-[calc(100%-1rem)]','sm:w-[90%]','max-w-3xl',
 								'max-h-[calc(100dvh-1rem)]','sm:max-h-[calc(100dvh-3rem)]','fixed','inset-2','sm:inset-6',
 								'z-[100]','rounded-2xl','backdrop-blur-md','flex','flex-col','items-center','justify-start',
 								'overflow-y-auto','p-4','sm:p-8','text-base','sm:text-xl','font-semibold','transition-all',
@@ -224,6 +240,10 @@ if(sign_up){
 		document.body.classList.add('overflow-hidden');
 
 
+		if(localStorage.getItem("darkMode") === "true"){
+			element.classList.remove("bg-blue-700");
+			element.classList.add("bg-black");
+		}
 
         setTimeout(() => {
 	        element.classList.remove('-translate-x-full', 'right-0', 'absolute');
@@ -790,11 +810,11 @@ window.addEventListener('scroll', () => {
 
 	if(dark_mode.innerHTML != "LIGHT MODE"){
 		if(window.scrollY > 50){
-			nav.style.backgroundColor = "whitesmoke";
+			nav.style.backgroundColor = "#E7F5DC";
 			nav.style.color = 'black';
 			nav.classList.remove('rounded-2xl');
 		}else{
-			nav.style.backgroundColor = '#ff3f3f';
+			nav.style.backgroundColor = '#728156';
 			nav.style.color = "white";
 			nav.classList.add('rounded-2xl');
 		}
