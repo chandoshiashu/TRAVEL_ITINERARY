@@ -619,8 +619,6 @@ function Profile_SetUp(username){
 
 		const Profile_Pic_Upload = document.getElementById("Profile_Pic");
 		const profile_input = document.getElementById("profile_input");
-		
-		Get_PfP();
 
 		if (Profile_Pic_Upload) {
 		    Profile_Pic_Upload.addEventListener('click', () => {
