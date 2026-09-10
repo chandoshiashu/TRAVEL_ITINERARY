@@ -164,8 +164,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Crypto ID:", data.username);
 
 
-    Get_PfP();
-
 	fetch('/api/current-user')
         .then(response => response.json())
         .then(data => {
