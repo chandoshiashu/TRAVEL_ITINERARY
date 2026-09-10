@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const Profile_Pic_Upload = document.getElementById("Profile_Pic");
 
-    fetch('api/get_profile_pic')
+    fetch(`/api/get_profile_pic?username=${encodeURIComponent(localStorage.getItem("username"))}`)
     	.then(response => response.json())
     	.then(data => {
     		if(data.ProfileImage != "-1"){

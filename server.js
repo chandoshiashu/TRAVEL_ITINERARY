@@ -258,7 +258,7 @@ app.get('/api/get_profile_pic', async (req, res) => {
     try{
 
         await connectDB();
-        const {username} = req.body;
+        const {username} = req.query;
 
         const USER = await User.findOne({username});
         if(USER.ProfileImage){
