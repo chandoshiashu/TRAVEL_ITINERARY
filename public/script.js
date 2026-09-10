@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if(Is_Logged_In === "Yes"){
 		alert("Yes");
 		Profile_SetUp(localStorage.getItem("username"));
+		Get_PfP();
 	}
 
 
@@ -173,6 +174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 localStorage.setItem("username", data.username);
                 localStorage.setItem("IsLogged", "Yes");
                 Profile_SetUp(data.username);
+                Get_PfP();
             }
 
         	else {
@@ -524,6 +526,7 @@ function renderSIGN_UP_FORM(element){
 					localStorage.setItem("username", username.value);
 					localStorage.setItem("IsLogged", "Yes");
 					Profile_SetUp(username.value);
+					Get_PfP();
 
 				} else{
 					alert(data.message);
@@ -615,10 +618,11 @@ function Profile_SetUp(username){
 			});
 		}
 
-		Get_PfP();
 
 		const Profile_Pic_Upload = document.getElementById("Profile_Pic");
 		const profile_input = document.getElementById("profile_input");
+		
+		Get_PfP();
 
 		if (Profile_Pic_Upload) {
 		    Profile_Pic_Upload.addEventListener('click', () => {
@@ -636,6 +640,7 @@ function Profile_SetUp(username){
 		                const image = e.target.result;
 		                Profile_Pic_Upload.style.backgroundImage = `url('${image}')`;
 
+		                showLoader();
 
            				const response = await fetch('/api/put_profile_pic', {
 							method: 'post', 
@@ -650,6 +655,7 @@ function Profile_SetUp(username){
 
            				const data = await response.json();
            				if(data.success){
+           					hideLoader();
            					alert("THE PROFILE PIC HAS BEEN UPDATED SUCCESSFULLY !!")
            				}
 
@@ -863,25 +869,27 @@ function hideLoader() {
 
 async function Get_PfP(){
 	const Profile_Pic_Upload = document.getElementById("Profile_Pic");
+	if(Profile_Pic_Upload){
+	    fetch(`/api/get_profile_pic?username=${encodeURIComponent(localStorage.getItem("username"))}`)
+	    	.then(response => response.json())
+	    	.then(data => {
+	    		if(data.ProfileImage != "-1"){
+	    			if(Profile_Pic_Upload){
+	    				Profile_Pic_Upload.style.backgroundImage = `url('${data.ProfileImage}')`;
+	    			}
+	    			else{
+	    				alert("Profile_Pic_Upload doesn't Exist !!");
+	    			}
+	    		}
+	    		else{
+	    			alert(data.Message);
+	    		}
+	    	})
+	    	.catch(error => {
+	    		console.error("Could not set profile pic !!", error);
+	    	});
+	}
 
-    fetch(`/api/get_profile_pic?username=${encodeURIComponent(localStorage.getItem("username"))}`)
-    	.then(response => response.json())
-    	.then(data => {
-    		if(data.ProfileImage != "-1"){
-    			if(Profile_Pic_Upload){
-    				Profile_Pic_Upload.style.backgroundImage = `url('${data.ProfileImage}')`;
-    			}
-    			else{
-    				alert("Profile_Pic_Upload doesn't Exist !!");
-    			}
-    		}
-    		else{
-    			alert(data.message);
-    		}
-    	})
-    	.catch(error => {
-    		console.error("Could not set profile pic !!", error);
-    	});
 
 
 }

@@ -261,17 +261,27 @@ app.get('/api/get_profile_pic', async (req, res) => {
         const {username} = req.query;
 
         const USER = await User.findOne({username});
-        if(USER.ProfileImage){
-            res.status(200).json({
-                ProfileURL: USER.ProfileImage
-            });
-        }
-        else{
-            res.status(200).json({
+
+
+
+        if (!USER) {
+            return res.status(404).json({
                 ProfileImage: "-1",
-                Message: "The Profile Photo is not being set "
+                Message: "User not found"
             });
         }
+
+
+        if(USER.ProfileImage){
+            return res.status(200).json({
+                ProfileImage: USER.ProfileImage
+            });
+        }
+
+        return res.status(200).json({
+            ProfileImage: "-1",
+            Message: "The Profile Photo is not being set "
+        });
 
 
     } catch(error){
@@ -291,7 +301,7 @@ app.post('/api/put_profile_pic', async (req, res) => {
         const {username, image_url} = req.body;
 
         const result = await User.updateMany(
-          { Username: username },
+          { username: username },
           { $set: { ProfileImage: image_url } } 
         );
 
