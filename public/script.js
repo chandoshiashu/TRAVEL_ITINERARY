@@ -148,16 +148,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 	}
 
-	const Is_Logged_In = localStorage.getItem("IsLogged");
-	const nav_element = document.getElementById('main-nav');
-
-	if(Is_Logged_In === "Yes"){
-		alert("Yes");
-		Profile_SetUp(localStorage.getItem("username"));
-		// Get_PfP();
-	}
-
-
 
     const response = await fetch('/api/crypto_id');
     const data = await response.json();
