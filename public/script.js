@@ -157,19 +157,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 	}
 
 
-	const Profile_Pic_Upload = document.getElementById("Profile_Pic")
-	const savedPic = localStorage.getItem('userProfilePic');
-    if (savedPic && Profile_Pic_Upload) {
-        Profile_Pic_Upload.style.backgroundImage = savedPic;
-    }
-
-
-
     const response = await fetch('/api/crypto_id');
     const data = await response.json();
 
     console.log("Crypto ID:", data.username);
 
+
+    const Profile_Pic_Upload = document.getElementById("Profile_Pic");
+
+    fetch('api/get_profile_pic')
+    	.then(response => response.json())
+    	.then(data => {
+    		if(data.ProfileImage != "-1"){
+    			if(Profile_Pic_Upload){
+    				Profile_Pic_Upload.style.backgroundImage = `url('${data.ProfileImage}')`;
+    			}
+    			else{
+    				alert("Profile_Pic_Upload doesn't Exist !!");
+    			}
+    		}
+    		else{
+    			alert(data.message);
+    		}
+    	})
+    	.catch(error => {
+    		console.error("Could not set profile pic !!", error);
+    	});
 
 
 	fetch('/api/current-user')
@@ -630,23 +643,42 @@ function Profile_SetUp(username){
 		        profile_input.click();
 		    });
 
-		    profile_input.addEventListener('change', (event) => {
+		    profile_input.addEventListener('change', async (event) => {
 		        const file = event.target.files[0];
 		        
-		        // Check if a file was actually selected (handles user cancelling the picker)
+		        
 		        if (file) {
-		            const reader = new FileReader(); // 1. FIXED: Created the reader instance
+		            const reader = new FileReader(); 
 
-		            reader.onload = function(e) { // 2. FIXED: Changed 'render' to 'reader'
+		            reader.onload = function(e) {
 		                const image = e.target.result;
 		                Profile_Pic_Upload.style.backgroundImage = `url('${image}')`;
-		                localStorage.setItem("userProfilePic", image);
+
+
+           				const response = await fetch('/api/put_profile_pic', {
+							method: 'post', 
+							headers:{
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
+								username: username,
+								image_url: image
+							})
+						});
+
+           				const data = await response.json();
+           				if(data.success){
+           					alert("THE PROFILE PIC HAS BEEN UPDATED SUCCESSFULLY !!")
+           				}
+
 		            };
 
-		            reader.readAsDataURL(file); // 3. FIXED: Added this line to start reading the file
+		            reader.readAsDataURL(file);
 		        }
 		    });
 		}
+
+
 
 		const Saved_Itineraries_btn = Profile_Box.querySelector("#Saved_Itineraries");
 		if(Saved_Itineraries_btn){

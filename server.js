@@ -69,7 +69,8 @@ const UserSchema = new mongoose.Schema({
     GoogleID: {type: String},
     AnonymousUsername: {
         type: String
-    }
+    },
+    ProfileImage: {type: String}
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -252,6 +253,63 @@ app.get('/api/crypto_id', (req, res) => {
 });
 
 
+app.get('/api/get_profile_pic', async (req, res) => {
+
+    try{
+
+        await connectDB();
+        const {username} = req.body;
+
+        const USER = await User.findOne({username});
+        if(USER.ProfileImage){
+            res.status(200).json({
+                ProfileURL: USER.ProfileImage
+            });
+        }
+        else{
+            res.status(200).json({
+                ProfileImage: "-1",
+                Message: "The Profile Photo is not being set "
+            });
+        }
+
+
+    } catch(error){
+        console.log("ERROR AFTER TRYING GETTING PIC IS ", error);
+        res.status(500).json({
+            ProfileImage: "-1",
+            Message: "Sorry, there was a problem fetching your image through /api/get_profile_pic."
+        });
+    }
+
+});
+
+app.post('/api/put_profile_pic', async (req, res) => {
+    try{
+        await connectDB();
+
+        const {username, image_url} = req.body;
+
+        const result = await User.updateMany(
+          { Username: username },
+          { $set: { ProfileImage: image_url } } 
+        );
+
+        console.log("THE RESULT FOR UPDATING THE PROFILE IMAGE SCHEMA VALUE IS : - ", result);
+
+        res.status(200).json({
+            success:true
+        });
+
+    } catch(error){
+        console.error("Tried getting profile pic but got error : ", error);
+
+        res.status(500).send({
+            success: false
+        });
+    }
+});
+
 app.post('/contact', async (req, res) => {
     try {
         const { name, email, message } = req.body;
@@ -349,8 +407,8 @@ app.post('/api/credentials', async (req, res) => {
         // latest change
 
         const result = await ITINERARY.updateMany(
-          { Username: "-1", AnonymousUsername: req.cookies.username},             // 1. Filter: Find documents where Username is "-1"
-          { $set: { Username: username } } // 2. Update: Change the Username to your new variable
+          { Username: "-1", AnonymousUsername: req.cookies.username},
+          { $set: { Username: username } } 
         );
 
         res.status(200).json({success: true, message: "LOGIN SUCCESSFULLY :)) "});
