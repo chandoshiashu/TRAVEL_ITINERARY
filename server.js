@@ -260,10 +260,11 @@ app.get('/api/get_profile_pic', async (req, res) => {
         await connectDB();
         const {username} = req.query;
 
+        console.log("PROFILE PIC USERNAME RECEIVED =", username);
         const USER = await User.findOne({username});
 
-
-
+        console.log("PROFILE PIC USER FOUND =", USER);
+        
         if (!USER) {
             return res.status(404).json({
                 ProfileImage: "-1",
