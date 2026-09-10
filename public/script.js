@@ -884,7 +884,7 @@ async function Get_PfP(username){
 
         if(data.ProfileURL){
             Profile_Pic_Upload.style.backgroundImage =
-                `url('${data.ProfileURL}')`;
+                `url('${data.ProfileImage}')`;
         }
 
     } catch(error){
