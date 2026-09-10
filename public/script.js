@@ -650,7 +650,7 @@ function Profile_SetUp(username){
 		        if (file) {
 		            const reader = new FileReader(); 
 
-		            reader.onload = function(e) {
+		            reader.onload = async function(e) {
 		                const image = e.target.result;
 		                Profile_Pic_Upload.style.backgroundImage = `url('${image}')`;
 
