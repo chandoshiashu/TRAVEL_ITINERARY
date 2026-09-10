@@ -148,11 +148,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 	}
 
+	const Is_Logged_In = localStorage.getItem("IsLogged");
+	const nav_element = document.getElementById('main-nav');
+
+	if(Is_Logged_In === "Yes"){
+		alert("Yes");
+		Profile_SetUp(localStorage.getItem("username"));
+	}
+
+
+	const Profile_Pic_Upload = document.getElementById("Profile_Pic")
+	const savedPic = localStorage.getItem('userProfilePic');
+    if (savedPic && Profile_Pic_Upload) {
+        Profile_Pic_Upload.style.backgroundImage = savedPic;
+    }
+
+
 
     const response = await fetch('/api/crypto_id');
     const data = await response.json();
 
     console.log("Crypto ID:", data.username);
+
 
 
 	fetch('/api/current-user')
@@ -163,7 +180,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 localStorage.setItem("username", data.username);
                 localStorage.setItem("IsLogged", "Yes");
                 Profile_SetUp(data.username);
-                // Get_PfP();
             }
 
         	else {
@@ -515,7 +531,6 @@ function renderSIGN_UP_FORM(element){
 					localStorage.setItem("username", username.value);
 					localStorage.setItem("IsLogged", "Yes");
 					Profile_SetUp(username.value);
-					// Get_PfP();
 
 				} else{
 					alert(data.message);
@@ -584,7 +599,6 @@ function Profile_SetUp(username){
 		`
 
 		document.body.appendChild(Profile_Box);
-		Get_PfP(username);
 
 		const close_profile_box = document.getElementById("close_profile_box");
 		if(close_profile_box){
@@ -608,7 +622,6 @@ function Profile_SetUp(username){
 			});
 		}
 
-
 		const Profile_Pic_Upload = document.getElementById("Profile_Pic");
 		const profile_input = document.getElementById("profile_input");
 
@@ -617,44 +630,23 @@ function Profile_SetUp(username){
 		        profile_input.click();
 		    });
 
-		    profile_input.addEventListener('change', async (event) => {
+		    profile_input.addEventListener('change', (event) => {
 		        const file = event.target.files[0];
 		        
-		        
+		        // Check if a file was actually selected (handles user cancelling the picker)
 		        if (file) {
-		            const reader = new FileReader(); 
+		            const reader = new FileReader(); // 1. FIXED: Created the reader instance
 
-		            reader.onload = async function(e) {
+		            reader.onload = function(e) { // 2. FIXED: Changed 'render' to 'reader'
 		                const image = e.target.result;
 		                Profile_Pic_Upload.style.backgroundImage = `url('${image}')`;
-
-		                showLoader();
-
-           				const response = await fetch('/api/put_profile_pic', {
-							method: 'post', 
-							headers:{
-								'Content-Type': 'application/json'
-							},
-							body: JSON.stringify({
-								username: username,
-								image_url: image
-							})
-						});
-
-           				const data = await response.json();
-           				if(data.success){
-           					hideLoader();
-           					alert("THE PROFILE PIC HAS BEEN UPDATED SUCCESSFULLY !!")
-           				}
-
+		                localStorage.setItem("userProfilePic", image);
 		            };
 
-		            reader.readAsDataURL(file);
+		            reader.readAsDataURL(file); // 3. FIXED: Added this line to start reading the file
 		        }
 		    });
 		}
-
-
 
 		const Saved_Itineraries_btn = Profile_Box.querySelector("#Saved_Itineraries");
 		if(Saved_Itineraries_btn){
@@ -852,34 +844,6 @@ function hideLoader() {
 
     document.body.classList.remove('overflow-hidden');
     document.body.classList.remove('page-disabled');
-}
-
-async function Get_PfP(username){
-
-    const Profile_Pic_Upload = document.getElementById("Profile_Pic");
-
-    if(!Profile_Pic_Upload){
-        return;
-    }
-
-    try{
-
-        const response = await fetch(
-            `/api/get_profile_pic?username=${encodeURIComponent(username)}`
-        );
-
-        const data = await response.json();
-
-        console.log("PROFILE PIC DATA =", data);
-
-        if(data.ProfileImage){
-            Profile_Pic_Upload.style.backgroundImage =
-                `url('${data.ProfileImage}')`;
-        }
-
-    } catch(error){
-        console.error("Could not set profile pic !!", error);
-    }
 }
 
 

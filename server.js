@@ -39,8 +39,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('trust proxy', 1);
 
-app.use(express.json( {limit: '50mb'} ));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(cookieParser());
@@ -69,8 +69,7 @@ const UserSchema = new mongoose.Schema({
     GoogleID: {type: String},
     AnonymousUsername: {
         type: String
-    },
-    ProfileImage: {type: String}
+    }
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -253,74 +252,6 @@ app.get('/api/crypto_id', (req, res) => {
 });
 
 
-app.get('/api/get_profile_pic', async (req, res) => {
-
-    try{
-
-        await connectDB();
-        const {username} = req.query;
-
-        console.log("PROFILE PIC USERNAME RECEIVED =", username);
-        const USER = await User.findOne({username});
-
-        console.log("PROFILE PIC USER FOUND =", USER);
-        
-        if (!USER) {
-            return res.status(404).json({
-                ProfileImage: "-1",
-                Message: "User not found"
-            });
-        }
-
-
-        if(USER.ProfileImage){
-            return res.status(200).json({
-                ProfileImage: USER.ProfileImage
-            });
-        }
-
-        return res.status(200).json({
-            ProfileImage: "-1",
-            Message: "The Profile Photo is not being set "
-        });
-
-
-    } catch(error){
-        console.log("ERROR AFTER TRYING GETTING PIC IS ", error);
-        res.status(500).json({
-            ProfileImage: "-1",
-            Message: "Sorry, there was a problem fetching your image through /api/get_profile_pic."
-        });
-    }
-
-});
-
-app.post('/api/put_profile_pic', async (req, res) => {
-    try{
-        await connectDB();
-
-        const {username, image_url} = req.body;
-
-        const result = await User.updateMany(
-          { username: username },
-          { $set: { ProfileImage: image_url } } 
-        );
-
-        console.log("THE RESULT FOR UPDATING THE PROFILE IMAGE SCHEMA VALUE IS : - ", result);
-
-        res.status(200).json({
-            success:true
-        });
-
-    } catch(error){
-        console.error("Tried getting profile pic but got error : ", error);
-
-        res.status(500).send({
-            success: false
-        });
-    }
-});
-
 app.post('/contact', async (req, res) => {
     try {
         const { name, email, message } = req.body;
@@ -418,8 +349,8 @@ app.post('/api/credentials', async (req, res) => {
         // latest change
 
         const result = await ITINERARY.updateMany(
-          { Username: "-1", AnonymousUsername: req.cookies.username},
-          { $set: { Username: username } } 
+          { Username: "-1", AnonymousUsername: req.cookies.username},             // 1. Filter: Find documents where Username is "-1"
+          { $set: { Username: username } } // 2. Update: Change the Username to your new variable
         );
 
         res.status(200).json({success: true, message: "LOGIN SUCCESSFULLY :)) "});
