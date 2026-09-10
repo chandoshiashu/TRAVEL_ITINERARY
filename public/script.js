@@ -882,7 +882,7 @@ async function Get_PfP(username){
 
         console.log("PROFILE PIC DATA =", data);
 
-        if(data.ProfileURL){
+        if(data.ProfileImage){
             Profile_Pic_Upload.style.backgroundImage =
                 `url('${data.ProfileImage}')`;
         }
