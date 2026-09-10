@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		Profile_SetUp(localStorage.getItem("username"));
 		// Get_PfP();
 	}
-	
+
 
 
     const response = await fetch('/api/crypto_id');
@@ -594,7 +594,7 @@ function Profile_SetUp(username){
 		`
 
 		document.body.appendChild(Profile_Box);
-		Get_PfP();
+		Get_PfP(username);
 
 		const close_profile_box = document.getElementById("close_profile_box");
 		if(close_profile_box){
@@ -864,33 +864,34 @@ function hideLoader() {
     document.body.classList.remove('page-disabled');
 }
 
+async function Get_PfP(username){
 
-async function Get_PfP(){
-	const Profile_Pic_Upload = document.getElementById("Profile_Pic");
-	if(Profile_Pic_Upload){
-	    fetch(`/api/get_profile_pic?username=${encodeURIComponent(localStorage.getItem("username"))}`)
-	    	.then(response => response.json())
-	    	.then(data => {
-	    		if(data.ProfileImage != "-1"){
-	    			if(Profile_Pic_Upload){
-	    				Profile_Pic_Upload.style.backgroundImage = `url('${data.ProfileImage}')`;
-	    			}
-	    			else{
-	    				alert("Profile_Pic_Upload doesn't Exist !!");
-	    			}
-	    		}
-	    		else{
-	    			alert(data.Message);
-	    		}
-	    	})
-	    	.catch(error => {
-	    		console.error("Could not set profile pic !!", error);
-	    	});
-	}
+    const Profile_Pic_Upload = document.getElementById("Profile_Pic");
 
+    if(!Profile_Pic_Upload){
+        return;
+    }
 
+    try{
 
+        const response = await fetch(
+            `/api/get_profile_pic?username=${encodeURIComponent(username)}`
+        );
+
+        const data = await response.json();
+
+        console.log("PROFILE PIC DATA =", data);
+
+        if(data.ProfileURL){
+            Profile_Pic_Upload.style.backgroundImage =
+                `url('${data.ProfileURL}')`;
+        }
+
+    } catch(error){
+        console.error("Could not set profile pic !!", error);
+    }
 }
+
 
 window.addEventListener('scroll', () => {
 	const nav = document.getElementById('main-nav');
