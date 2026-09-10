@@ -154,8 +154,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if(Is_Logged_In === "Yes"){
 		alert("Yes");
 		Profile_SetUp(localStorage.getItem("username"));
-		Get_PfP();
+		// Get_PfP();
 	}
+	
 
 
     const response = await fetch('/api/crypto_id');
@@ -172,7 +173,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 localStorage.setItem("username", data.username);
                 localStorage.setItem("IsLogged", "Yes");
                 Profile_SetUp(data.username);
-                Get_PfP();
+                // Get_PfP();
             }
 
         	else {
@@ -524,7 +525,7 @@ function renderSIGN_UP_FORM(element){
 					localStorage.setItem("username", username.value);
 					localStorage.setItem("IsLogged", "Yes");
 					Profile_SetUp(username.value);
-					Get_PfP();
+					// Get_PfP();
 
 				} else{
 					alert(data.message);
@@ -593,6 +594,7 @@ function Profile_SetUp(username){
 		`
 
 		document.body.appendChild(Profile_Box);
+		Get_PfP();
 
 		const close_profile_box = document.getElementById("close_profile_box");
 		if(close_profile_box){
