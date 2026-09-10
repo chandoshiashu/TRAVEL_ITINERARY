@@ -163,27 +163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Crypto ID:", data.username);
 
 
-    const Profile_Pic_Upload = document.getElementById("Profile_Pic");
-
-    fetch(`/api/get_profile_pic?username=${encodeURIComponent(localStorage.getItem("username"))}`)
-    	.then(response => response.json())
-    	.then(data => {
-    		if(data.ProfileImage != "-1"){
-    			if(Profile_Pic_Upload){
-    				Profile_Pic_Upload.style.backgroundImage = `url('${data.ProfileImage}')`;
-    			}
-    			else{
-    				alert("Profile_Pic_Upload doesn't Exist !!");
-    			}
-    		}
-    		else{
-    			alert(data.message);
-    		}
-    	})
-    	.catch(error => {
-    		console.error("Could not set profile pic !!", error);
-    	});
-
+    Get_PfP();
 
 	fetch('/api/current-user')
         .then(response => response.json())
@@ -635,6 +615,8 @@ function Profile_SetUp(username){
 			});
 		}
 
+		Get_PfP();
+
 		const Profile_Pic_Upload = document.getElementById("Profile_Pic");
 		const profile_input = document.getElementById("profile_input");
 
@@ -878,6 +860,31 @@ function hideLoader() {
     document.body.classList.remove('page-disabled');
 }
 
+
+async function Get_PfP(){
+	const Profile_Pic_Upload = document.getElementById("Profile_Pic");
+
+    fetch(`/api/get_profile_pic?username=${encodeURIComponent(localStorage.getItem("username"))}`)
+    	.then(response => response.json())
+    	.then(data => {
+    		if(data.ProfileImage != "-1"){
+    			if(Profile_Pic_Upload){
+    				Profile_Pic_Upload.style.backgroundImage = `url('${data.ProfileImage}')`;
+    			}
+    			else{
+    				alert("Profile_Pic_Upload doesn't Exist !!");
+    			}
+    		}
+    		else{
+    			alert(data.message);
+    		}
+    	})
+    	.catch(error => {
+    		console.error("Could not set profile pic !!", error);
+    	});
+
+
+}
 
 window.addEventListener('scroll', () => {
 	const nav = document.getElementById('main-nav');
