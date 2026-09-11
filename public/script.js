@@ -47,7 +47,7 @@ function enableDarkMode(){
 
 	const form_element = document.getElementById('form');
 	if(form_element){
-		form_element.style.backgroundImage = 'repeating-linear-gradient(25deg, #000000, transparent 250px);';
+		form_element.style.backgroundImage = 'repeating-linear-gradient(25deg, #000000, transparent 400px);';
 		form_element.style.color = "aliceblue";
 	}
 
@@ -95,7 +95,7 @@ function disableDarkMode(){
 
 		const form_element = document.getElementById('form');
 		if(form_element){
-			form_element.style.backgroundImage = 'background-image: repeating-linear-gradient(45deg, #82abae, transparent 200px);';
+			form_element.style.backgroundImage = 'background-image: repeating-linear-gradient(45deg, #82abae, transparent 400px);';
 			form_element.style.color = "gray";
 		}
 
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 							    '-translate-x-full', 'transition-transform', 'duration-500', 'ease-out');
 
         element.style.color = 'honeydew';
-        element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px)";
+        element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 400px)";
         document.body.appendChild(element);
         document.body.classList.add('overflow-hidden');
 
@@ -245,7 +245,7 @@ if(sign_up){
 							    '-translate-x-full', 'transition-transform', 'duration-500', 'ease-out');
 
 		element.style.color = 'honeydew';
-		element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px)";
+		element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 400px)";
 		document.body.appendChild(element);
 		document.body.classList.add('overflow-hidden');
 
