@@ -51,10 +51,10 @@ function enableDarkMode(){
 		form_element.style.color = "aliceblue";
 	}
 
-	// const sign_up_box = document.getElementById("sign_up_box")
-	// if(sign_up_box){
-	// 	sign_up_box.style.backgroundColor = 'black';
-	// }
+	const custom_plan = document.getElementById("custom_plan")
+	if(custom_plan){
+		custom_plan.style.backgroundColor = 'black';
+	}
 
 	const dark_mode_btn = document.getElementById('dark_btn');
 	if(dark_mode_btn){
@@ -99,10 +99,10 @@ function disableDarkMode(){
 			form_element.style.color = "gray";
 		}
 
-		// const sign_up_box = document.getElementById("sign_up_box")
-		// if(sign_up_box){
-		// 	sign_up_box.style.backgroundColor = 'darkblue';
-		// }
+		const custom_plan = document.getElementById("custom_plan")
+		if(custom_plan){
+			custom_plan.style.backgroundColor = '#728156';
+		}
 
 		const dark_mode_btn = document.getElementById('dark_btn');
 		if(dark_mode_btn){
