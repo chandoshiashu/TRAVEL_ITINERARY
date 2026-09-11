@@ -47,7 +47,8 @@ function enableDarkMode(){
 
 	const form_element = document.getElementById('form');
 	if(form_element){
-		form_element.style.background = 'linear-gradient(#9BA8AB, #4A5C6A, #253745, #11212D)';
+		form_element.style.backgroundImage = 'repeating-linear-gradient(25deg, #000000, transparent 250px);';
+		form_element.style.color = "aliceblue";
 	}
 
 	const sign_up_box = document.getElementById("sign_up_box")
@@ -87,7 +88,8 @@ function disableDarkMode(){
 
 		const form_element = document.getElementById('form');
 		if(form_element){
-			form_element.style.background = 'linear-gradient(#E7F5DC, #B6C99B, #98A77C, #728156)';
+			form_element.style.backgroundImage = 'background-image: repeating-linear-gradient(45deg, #82abae, transparent 200px);';
+			form_element.style.color = "gray";
 		}
 
 		const sign_up_box = document.getElementById("sign_up_box")
@@ -124,6 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 							    '-translate-x-full', 'transition-transform', 'duration-500', 'ease-out');
 
         element.style.color = 'honeydew';
+        element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px);";
         document.body.appendChild(element);
         document.body.classList.add('overflow-hidden');
 
@@ -235,6 +238,7 @@ if(sign_up){
 							    '-translate-x-full', 'transition-transform', 'duration-500', 'ease-out');
 
 		element.style.color = 'honeydew';
+		element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px);";
 		document.body.appendChild(element);
 		document.body.classList.add('overflow-hidden');
 
@@ -258,11 +262,11 @@ if(sign_up){
 function render_main_features(element){
 	element.innerHTML = `
 			<h2 class="p-3 flex justify-center decoration-5 underline w-full ml-auto mr-auto mb-5">SIGN UP/SIGN IN FEATURES</h2>
-			<p class="py-3 px-10 text-center w-full cursor-pointer hover:underline decoration-8 decoration-red-300 ease-in-out ml-auto mr-auto mb-5">YOU CAN ACCESS YOUR PREVIOUSLY GENERATED TRAVEL ITINERARIES THROUGH PROFILE</p>
-			<p class="py-3 px-10 text-center w-full cursor-pointer hover:underline decoration-8 decoration-red-300 ease-in-out ml-auto mr-auto mb-5">YOU CAN CLICK OVER AN ACTIVITY TO KNOW ABOUT IT</p>
+			<p class="py-3 px-10 text-center w-full cursor-pointer ease-in-out ml-auto mr-auto mb-5">YOU CAN ACCESS YOUR PREVIOUSLY GENERATED TRAVEL ITINERARIES THROUGH PROFILE</p>
+			<p class="py-3 px-10 text-center w-full cursor-pointer ease-in-out ml-auto mr-auto mb-5">YOU CAN CLICK OVER AN ACTIVITY TO KNOW ABOUT IT</p>
 			<div class="flex items-center justify-center flex-wrap">
-				<button id="create_user" class="p-4 border-3 rounded-2xl m-3 decoration-3 decoration-[lime] transition-colors hover:underline hover:bg-black hover:text-[lime] cursor-pointer transition-all">SIGN UP</button>
-				<button id="google_sign_in" class="p-4 border-3 rounded-2xl m-3 decoration-3 decoration-[lime] transition-colors hover:underline hover:bg-black hover:text-[lime] cursor-pointer transition-all">LOGIN WITH GOOGLE</button>
+				<button id="create_user" class="p-4 border-3 rounded-2xl m-3 transition-colors hover:underline hover:bg-black hover:text-[lime] cursor-pointer transition-all">SIGN UP</button>
+				<button id="google_sign_in" class="p-4 border-3 rounded-2xl m-3 transition-colors hover:underline hover:bg-black hover:text-[lime] cursor-pointer transition-all">LOGIN WITH GOOGLE</button>
 			</div>
 
 			<div id="cross_cancel" class="absolute top-0 right-0 p-2 m-2 rounded-2xl bg-black/20 cursor-pointer hover:bg-black/50">❌</div>
@@ -862,6 +866,13 @@ window.addEventListener('scroll', () => {
 			nav.style.backgroundColor = '#728156';
 			nav.style.color = "white";
 			nav.classList.add('rounded-2xl');
+		}
+	}
+	else{
+		if(window.scrollY > 50){
+			nav.style.backgroundColor = "black";
+		}else{
+			nav.style.backgroundColor = 'rgb(6, 20, 27)';
 		}
 	}
 
