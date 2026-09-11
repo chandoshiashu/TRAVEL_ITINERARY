@@ -1026,11 +1026,11 @@ if(submit_btn){
 	        console.log("SUCCESS:", data);
 
 	        Headers.innerHTML = `
-	        	<h2>WEATHER CONDITION OF ${data.destination} is ${data.weather}</h2>
-	        	<h2>${data.persona} Oriented Activities As Shown</h2>
+	        	<h2>${data.destination} is ${data.weather}&deg</h2>
+	        	<h2>${data.persona} Oriented Activities Are As Shown</h2>
 	        `;
 
-	        Headers.style.backgroundColor = "bg-purple-500";
+	        Headers.style.backgroundColor = "#97c9c3";
 
 
 	        const itineraryHTML = data.itinerary.map((day, index) => {
@@ -1085,7 +1085,7 @@ if(submit_btn){
 	        console.error("Fetch error:", error);
 	        submit_btn.disabled = false;
 			submit_text.textContent = "Submit";
-
+			Headers.style.backgroundColor = "transparent";
 			hideLoader();
 
 	    });
