@@ -1010,22 +1010,27 @@ if(submit_btn){
 
 	        console.log("Backend response:", data);
 
+	        const results = document.getElementById('results');
+	        const Headers = document.getElementById('Headers');
+	        Headers.classList.add("text-white", 'text-shadow-lg');
+
 	        if (data.error) {
-	            alert(data.error);
 	            hideLoader();
+	            alert(data.error);
+	            submit_btn.disabled = false;
+				submit_text.textContent = "Submit";
+				Headers.style.backgroundColor = "transparent";
 	            return;
 	        }
 
 	        console.log("SUCCESS:", data);
 
-	        const results = document.getElementById('results');
-	        const Headers = document.getElementById('Headers');
-	        Headers.classList.add("text-white", 'text-shadow-lg');
 	        Headers.innerHTML = `
 	        	<h2>WEATHER CONDITION OF ${data.destination} is ${data.weather}</h2>
-	        	<h2>HERE ARE THE ${data.persona} ORIENTED ACTIVITIES</h2>
+	        	<h2>${data.persona} Oriented Activities As Shown</h2>
 	        `;
 
+	        Headers.style.backgroundColor = "bg-purple-500";
 
 
 	        const itineraryHTML = data.itinerary.map((day, index) => {
