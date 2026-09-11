@@ -15,12 +15,13 @@
     <!-- 3. OPTIONAL: Including a reusable navbar snippet so you don't copy-paste it on every page -->
     <%- include('partials/navbar') %>
 
-    <div class="contact-container w-100 sm:w-150 lg:w-200 rounded-xl font-semibold text-2xl text-gray-800 flex flex-col items-center bg-green-200 m-10 p-5">
-        <h1 class="m-2 bg-green-100 p-2">Contact Our Team</h1>
-        <p class="m-2 bg-green-100 p-2">Have questions? Drop us a line below.</p>
+    <div class="contact-container w-100 sm:w-150 lg:w-200 rounded-xl font-semibold text-2xl text-gray-800 flex flex-col items-center m-10 p-5" style="background-image: repeating-linear-gradient(45deg, #31455e, transparent 300px);
+        color: #fffee1; font-weight: bolder;" id="contact_page_container">
+        <h1 class="m-2 p-2">Contact Our Team</h1>
+        <p class="m-2 p-2">Have questions? Drop us a line below.</p>
 
         <!-- 4. A standard HTML Form that POSTs data back to your Node.js backend -->
-        <form action="/contact" method="POST" class="flex flex-col items-center justify-center p-5 font-semibold text-2xl rounded-md m-3 bg-green-100">
+        <form action="/contact" method="POST" class="flex flex-col items-center justify-center p-5 font-semibold text-2xl rounded-md m-3">
             <div class="form-group m-2">
                 <label for="name">NAME :</label>
                 <input type="text" id="name" name="name" class="border-3 border-gray-400 rounded-md p-2" required>

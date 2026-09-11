@@ -60,6 +60,11 @@ function enableDarkMode(){
 	if(dark_mode_btn){
 		dark_mode_btn.innerHTML = `LIGHT MODE`;
 	}
+
+	const contact_page_container = document.getElementById("contact_page_container");
+	if(contact_page_container){
+		contact_page_container.style.backgroundColor = "cadetblue";
+	}
 }
 
 
@@ -107,6 +112,11 @@ function disableDarkMode(){
 		const dark_mode_btn = document.getElementById('dark_btn');
 		if(dark_mode_btn){
 			dark_mode_btn.innerHTML = `DARK MODE`;
+		}
+
+		const contact_page_container = document.getElementById("contact_page_container");
+		if(contact_page_container){
+			contact_page_container.style.backgroundColor = "transparent";
 		}
 	}
 }
