@@ -152,7 +152,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	const nav_element = document.getElementById('main-nav');
 
 	if(Is_Logged_In === "Yes"){
-		alert("Yes");
 		Profile_SetUp(localStorage.getItem("username"));
 	}
 
@@ -258,12 +257,12 @@ if(sign_up){
 
 function render_main_features(element){
 	element.innerHTML = `
-			<h2 class="p-3 flex justify-center decoration-8 underline w-full ml-auto mr-auto mb-5">SIGN UP/SIGN IN Features</h2>
-			<p class="py-3 px-10 text-center w-full cursor-pointer hover:underline decoration-8 decoration-red-300 ease-in-out ml-auto mr-auto mb-5">You can access your previously generated TRAVEL ITINERARIES through PROFILE</p>
-			<p class="py-3 px-10 text-center w-full cursor-pointer hover:underline decoration-8 decoration-red-300 ease-in-out ml-auto mr-auto mb-5">You can have SHARABLE ITINERARIES LINKS</p>
+			<h2 class="p-3 flex justify-center decoration-5 underline w-full ml-auto mr-auto mb-5">SIGN UP/SIGN IN FEATURES</h2>
+			<p class="py-3 px-10 text-center w-full cursor-pointer hover:underline decoration-8 decoration-red-300 ease-in-out ml-auto mr-auto mb-5">YOU CAN ACCESS YOUR PREVIOUSLY GENERATED TRAVEL ITINERARIES THROUGH PROFILE</p>
+			<p class="py-3 px-10 text-center w-full cursor-pointer hover:underline decoration-8 decoration-red-300 ease-in-out ml-auto mr-auto mb-5">YOU CAN CLICK OVER AN ACTIVITY TO KNOW ABOUT IT</p>
 			<div class="flex items-center justify-center flex-wrap">
-				<button id="create_user" class="p-4 border-3 rounded-2xl m-3 decoration-7 decoration-lime-700 transition-colors hover:underline hover:bg-black hover:text-lime-500 cursor-pointer transition-all">SIGN UP</button>
-				<button id="google_sign_in" class="p-4 border-3 rounded-2xl m-3 decoration-7 decoration-lime-700 transition-colors hover:underline hover:bg-black hover:text-lime-500 cursor-pointer transition-all">LOGIN WITH GOOGLE</button>
+				<button id="create_user" class="p-4 border-3 rounded-2xl m-3 decoration-3 decoration-[lime] transition-colors hover:underline hover:bg-black hover:text-[lime] cursor-pointer transition-all">SIGN UP</button>
+				<button id="google_sign_in" class="p-4 border-3 rounded-2xl m-3 decoration-3 decoration-[lime] transition-colors hover:underline hover:bg-black hover:text-[lime] cursor-pointer transition-all">LOGIN WITH GOOGLE</button>
 			</div>
 
 			<div id="cross_cancel" class="absolute top-0 right-0 p-2 m-2 rounded-2xl bg-black/20 cursor-pointer hover:bg-black/50">❌</div>
@@ -1013,6 +1012,7 @@ if(submit_btn){
 
 	        if (data.error) {
 	            alert(data.error);
+	            hideLoader();
 	            return;
 	        }
 
