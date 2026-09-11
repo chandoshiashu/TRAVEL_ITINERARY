@@ -51,10 +51,10 @@ function enableDarkMode(){
 		form_element.style.color = "aliceblue";
 	}
 
-	const sign_up_box = document.getElementById("sign_up_box")
-	if(sign_up_box){
-		sign_up_box.style.backgroundColor = 'black';
-	}
+	// const sign_up_box = document.getElementById("sign_up_box")
+	// if(sign_up_box){
+	// 	sign_up_box.style.backgroundColor = 'black';
+	// }
 
 	const dark_mode_btn = document.getElementById('dark_btn');
 	if(dark_mode_btn){
@@ -68,15 +68,22 @@ function disableDarkMode(){
 		
 
 	const nav_element = document.querySelector('nav');
+	const logo_anchor = document.getElementById("logo_anchor");
 
 	if(nav_element){
 
 		if(window.scrollY > 50){
 			nav_element.style.backgroundColor = "#E7F5DC";
 			nav_element.style.color = 'black';
+			if(logo_anchor){
+				logo_anchor.style.backgroundColor = "bg-[rgb(114, 129, 86)]";
+			}
 		}
 		else{
 			nav_element.style.backgroundColor = "#728156";
+			if(logo_anchor){
+				logo_anchor.style.backgroundColor = "transparent";
+			}
 		}
 
 
@@ -92,10 +99,10 @@ function disableDarkMode(){
 			form_element.style.color = "gray";
 		}
 
-		const sign_up_box = document.getElementById("sign_up_box")
-		if(sign_up_box){
-			sign_up_box.style.backgroundColor = 'darkblue';
-		}
+		// const sign_up_box = document.getElementById("sign_up_box")
+		// if(sign_up_box){
+		// 	sign_up_box.style.backgroundColor = 'darkblue';
+		// }
 
 		const dark_mode_btn = document.getElementById('dark_btn');
 		if(dark_mode_btn){
@@ -126,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 							    '-translate-x-full', 'transition-transform', 'duration-500', 'ease-out');
 
         element.style.color = 'honeydew';
-        element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px);";
+        element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px)";
         document.body.appendChild(element);
         document.body.classList.add('overflow-hidden');
 
@@ -238,7 +245,7 @@ if(sign_up){
 							    '-translate-x-full', 'transition-transform', 'duration-500', 'ease-out');
 
 		element.style.color = 'honeydew';
-		element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px);";
+		element.style.backgroundImage = "repeating-linear-gradient(50deg, #311836, transparent 200px)";
 		document.body.appendChild(element);
 		document.body.classList.add('overflow-hidden');
 
