@@ -15,7 +15,26 @@
 </head>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
+
+.Tapestry{font-family: 'Tapestry', cursive;}
+.Ubuntu{font-family: 'Ubuntu', sans-serif;}
+.Source-Sans-3{font-family: 'Source Sans 3', sans-serif;}
+.Nato-Sans{font-family: 'Noto Sans', sans-serif;}
+.Merry-Whethers{font-family: 'Merriweather', serif;}
+.Pt-Sans{font-family: 'PT Sans', sans-serif;}
+.Macondo{font-family: 'Macondo', cursive;}
+.Plus-Jakarta-Sans{font-family: 'Plus Jakarta Sans', sans-serif;}
+.Inter{font-family: 'Inter', sans-serif;}
 
 .CatCard:hover{
 	text-shadow: 1px 0px 1px cyan;
@@ -23,6 +42,9 @@
 }
 
 .section2Cardp{max-width: 77.5%;}
+
+.LiTransition{transition: 0.25s ease-in-out;} 
+.LiTransition-2{transition: 0.5s ease-in-out;} 
 
 @media screen and (max-width: 796px){
 	.catcardmedia {grid-template-columns: repeat(1, 1fr);
@@ -51,26 +73,26 @@
 
 
 
-	<section id="section2" class="bg-aliceblue p-all-14">
-		<div class="m-bottom-1 m-left-1 sectionHeader">
-			<p class="Nato-Sans fore-grey font-semi-bold">Blanditiis unde illum earum</p>
+	<section id="section2" class="bg-aliceblue p-14">
+		<div class="mb-1 ml-1 sectionHeader">
+			<p class="Nato-Sans text-[grey] font-semibold">Blanditiis unde illum earum</p>
 			<h1 class="Pt-Sans">Categories</h1>
 		</div>
 		<div class="grid grid-col-3 catcardmedia"> 
-			<div class="m-right-3 p-bottom-7 bg-white pointer CatCard LiTransition max-w-125hf">
-				<img src="images/categorial images/cat-img1.jpg" class="w-100-percent">
-				<h1 class="text-center m-top-2 p-bottom-2 Merry-Whethers">Blogging</h1>
+			<div class="mr-3 pb-7 bg-white pointer CatCard LiTransition max-w-[125px]">
+				<img src="images/categorial images/cat-img1.jpg" class="w-[100vw]">
+				<h1 class="text-center mt-2 pb-2 Merry-Whethers">Blogging</h1>
 				<p class="section2Cardp m-auto Nato-Sans fore-grey">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 			</div>
-			<div class="m-right-3 p-bottom-7 bg-white pointer CatCard LiTransition max-w-125hf">
-				<img src="images/categorial images/cat-img2.jpg" class="w-100-percent">
-				<h1 class="text-center m-top-2 p-bottom-2 Merry-Whethers">Coding</h1>
-				<p class="section2Cardp m-auto Nato-Sans fore-grey">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			<div class="mr-3 pb-7 bg-white pointer CatCard LiTransition max-w-[125px]">
+				<img src="images/categorial images/cat-img2.jpg" class="w-[100vw]">
+				<h1 class="text-center mt-2 pb-2 Merry-Whethers">Coding</h1>
+				<p class="section2Cardp m-auto Nato-Sans text-[grey]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 			</div>
-			<div class="m-right-3 p-bottom-7 bg-white pointer CatCard LiTransition max-w-125hf">
-				<img src="images/categorial images/cat-img3.jpg" class="w-100-percent">
-				<h1 class="text-center m-top-2 p-bottom-2 Merry-Whethers">Marketing</h1>
-				<p class="section2Cardp m-auto Nato-Sans fore-grey">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			<div class="mr-3 pb-7 bg-white pointer CatCard LiTransition max-w-[125px]">
+				<img src="images/categorial images/cat-img3.jpg" class="w-[100vw]">
+				<h1 class="text-center mt-2 pb-2 Merry-Whethers">Marketing</h1>
+				<p class="section2Cardp m-auto Nato-Sans text-[grey]">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 			</div>
 		</div>
 	</section>
