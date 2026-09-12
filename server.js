@@ -612,6 +612,122 @@ app.get('/activity/:name', async (req, res) => {
 });
 
 
+app.get('/blog/:name', async (req, res) => {
+
+    try {
+
+        const blogName = req.params.name;
+        const blogImage = req.query.image_url || '/images/default.jpg';
+
+        console.log("Blog requested:", blogName);
+
+        const prompt = `
+        You are a travel information assistant.
+
+        Give detailed information about this blog title:
+
+        Blog:
+        ${blogName}
+
+        Return ONLY JSON.
+
+        Include:
+
+        - Blog_Title
+        - Subtopics
+        - Contents
+        - Overall_Description
+        - History
+        - Why_to_Visit
+        - Tips
+
+        While returning the JSON, make sure few points 
+        1. Subtopics should be an Array. You must create a Subtopics array and all Subtopics in it.
+        2. Contents should also be an Array. Each index of Contents Array must have content corresponding to the Subtopics index.
+        3. Overall_Description is simply the summary of the whole blog.
+        4. Rest as name suggests, do it. 
+
+        Keep the information useful for a tourist.
+        Do not invent facts.
+        `;
+
+        const response = await ai.models.generateContent({
+
+            model: "gemini-3.1-flash-lite-preview",
+
+            contents: prompt,
+
+            config: {
+                responseMimeType: "application/json",
+
+                responseSchema: {
+                    type: "object",
+
+                    properties: {
+
+                        Blog_Title: {
+                            type: "string"
+                        },
+
+                        Subtopics: {
+                            type: Array
+                        },
+
+                        Contents: {
+                            type: Array
+                        },
+
+                        Overall_Description: {
+                            type: "string"
+                        },
+
+                        History: {
+                            type: "string"
+                        },
+
+                        Why_to_Visit: {
+                            type: "string"
+                        },
+
+                        Tips: {
+                            type: "string"
+                        }
+
+                    },
+
+                    required: [
+                        "Blog_Title",
+                        "Subtopics",
+                        "Contents",
+                        "Overall_Description",
+                        "History",
+                        "Why_to_Visit",
+                        "Tips"
+                    ]
+                }
+            }
+        });
+
+        const Blog = JSON.parse(response.text);
+
+        res.render('blog', {
+            Blog,
+            blogImage
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).send("Could not load Blog.");
+
+    }
+
+});
+
+
+
+
 app.post('/api/generate-itinerary', async (req, res) => {
 
     try {
