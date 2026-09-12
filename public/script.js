@@ -698,19 +698,23 @@ function Profile_SetUp(username){
 						    	const img = activity.image || '/images/default.jpg';
 
 						    	return `
-						        <div 
-						            class="m-3 flex flex-col justify-center items-center rounded-2xl cursor-pointer 
-						                   bg-cover bg-center h-52 sm:h-64 p-5
-						                   hover:shadow-xl/30 hover:shadow-indigo-500/50 
-						                   hover:ring-4 hover:text-shadow-lg/30 hover:bg-blend-overlay"
-						            data-name="${activity.name}" 
-						            onclick="openActivity('${activity.name}', '${img}')" 
-						            style="background-image: url('${img}'); background-size: cover;"
-						        >
-						        </div>
-					            <h3 class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
-					            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
-					            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
+						    	<div>
+							        <div 
+							            class="m-3 flex flex-col justify-center items-center rounded-2xl cursor-pointer 
+							                   bg-cover bg-center h-52 sm:h-64 p-5
+							                   hover:shadow-xl/30 hover:shadow-indigo-500/50 
+							                   hover:ring-4 hover:text-shadow-lg/30 hover:bg-blend-overlay"
+							            data-name="${activity.name}" 
+							            onclick="openActivity('${activity.name}', '${img}')" 
+							            style="background-image: url('${img}'); background-size: cover;"
+							        >
+							        </div>
+							        <div>
+							            <h3 class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
+							            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
+							            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
+							         </div>
+						         </div>
 
 						    `}).join('');
 
@@ -1067,19 +1071,23 @@ if(submit_btn){
 			    	const img = activity.image || '/images/default.jpg';
 
 			    	return `
-			        <div 
-			            class="m-3 flex flex-col justify-center items-center rounded-2xl cursor-pointer 
-			                   bg-cover bg-center h-52 sm:h-64 p-5
-			                   hover:shadow-xl/30 hover:shadow-indigo-500/50 
-			                   hover:ring-4 hover:text-shadow-lg/30 hover:bg-blend-overlay"
-			            data-name="${activity.name}" 
-			            onclick="openActivity('${activity.name}', '${img}')" 
-			            style="background-image: url('${img}'); background-size: cover;"
-			        >
-			        </div>
-		            <h3 class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
-		            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
-		            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
+			    	<div>
+				        <div 
+				            class="m-3 flex flex-col justify-center items-center rounded-2xl cursor-pointer 
+				                   bg-cover bg-center h-52 sm:h-64 p-5
+				                   hover:shadow-xl/30 hover:shadow-indigo-500/50 
+				                   hover:ring-4 hover:text-shadow-lg/30 hover:bg-blend-overlay"
+				            data-name="${activity.name}" 
+				            onclick="openActivity('${activity.name}', '${img}')" 
+				            style="background-image: url('${img}'); background-size: cover;"
+				        >
+				        </div>
+				        <div>
+				            <h3 class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
+				            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
+				            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
+				        </div>
+				    </div>
 
 			    `}).join('');
 
