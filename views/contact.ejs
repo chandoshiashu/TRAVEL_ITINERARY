@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 1. Injecting dynamic variables from the backend -->
     <title>Roamio | Contact</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- 2. Linking static CSS files sitting inside your public folder -->
     <link rel="stylesheet" href="/style.css"> 
 </head>
 <body class="flex items-center bg-slate-300 flex-col p-2 transition-all">
 
-    <!-- 3. OPTIONAL: Including a reusable navbar snippet so you don't copy-paste it on every page -->
     <%- include('partials/navbar') %>
 
     <div class="contact-container w-100 sm:w-150 lg:w-200 rounded-xl font-semibold text-2xl text-gray-800 flex flex-col items-center m-10 p-5" style="background-image: repeating-linear-gradient(45deg, #31455e, transparent 300px);
@@ -20,7 +17,6 @@
         <h1 class="m-2 p-2">Contact Our Team</h1>
         <p class="m-2 p-2">Have questions? Drop us a line below.</p>
 
-        <!-- 4. A standard HTML Form that POSTs data back to your Node.js backend -->
         <form action="/contact" method="POST" class="flex flex-col items-center justify-center p-5 font-semibold text-2xl rounded-md m-3">
             <div class="form-group m-2">
                 <label for="name">NAME :</label>
@@ -41,7 +37,9 @@
         </form>
     </div>
 
-    <!-- 5. Linking client-side JavaScript sitting inside your public folder -->
+    <footer class="text-center bg-black p-10 text-white text-3xl" style="font-family: sans-serif;">
+        © 2026 Roamio-Trip
+    </footer>
 </body>
 <script src="/script.js"></script>
 </html>
