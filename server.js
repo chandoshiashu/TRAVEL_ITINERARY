@@ -713,20 +713,16 @@ app.get('/blog/:name', async (req, res) => {
 
                         Subtopics: {
                             type: "array",
-
-                            items: {
-                                type: "array",
-                                items:{
-                                    type:"string"
-                                }
-                            }
                         },
 
                         Contents: {
                             type: "array",
 
                             items: {
-                                type: "string"
+                                type: "array",
+                                items:{
+                                    type:"string"
+                                }
                             }
                         },
 
