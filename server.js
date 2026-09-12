@@ -621,7 +621,7 @@ async function GenerateBlogImages(subtopics){
 
         try{
             const ImageResponse = await ai.models.generateContent({
-                model: "gemini-3.1-flash-lite-image",
+                model: "gemini-2.5-flash-image",
                 contents: `Generate a High Quality Image related to the subtopic : ${subtopic}`
             });
 
