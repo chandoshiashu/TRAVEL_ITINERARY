@@ -698,7 +698,7 @@ function Profile_SetUp(username){
 						    	const img = activity.image || '/images/default.jpg';
 
 						    	return `
-						    	<div style="background-image: repeating-linear-gradient(45deg, #46ac8e, transparent 800px); font-family: monospace;">
+						    	<div>
 							        <div 
 							            class="m-3 flex flex-col justify-center items-center rounded-2xl cursor-pointer 
 							                   bg-cover bg-center h-52 sm:h-64 p-5
@@ -754,6 +754,9 @@ function Profile_SetUp(username){
 
 					const container = document.createElement('div');
 					container.id = "container_itineraries";
+					container.style.backgroundImage = "repeating-linear-gradient(45deg, #46ac8e, transparent 800px);"
+					container.style.fontFamily = 'monospace';
+
 					container.classList.add('fixed', 'bg-slate-300', 'flex', 'flex-col', 'h-[95vh]', 'overflow-y-auto', 
 											'w-full', 'z-[100]', 'rounded-[50px]', 'p-3', 'm-3', 'translate-x-full', 'transition-transform',
 											'transform', 'duration-500', 'ease-out');
@@ -1108,6 +1111,8 @@ if(submit_btn){
 			}).join('');
 
 			results.innerHTML = itineraryHTML;
+			results.style.backgroundImage = "repeating-linear-gradient(45deg, #46ac8e, transparent 800px);"
+			results.style.fontFamily = 'monospace';
 			submit_btn.disabled = false;
 			submit_text.textContent = "Submit";
 
