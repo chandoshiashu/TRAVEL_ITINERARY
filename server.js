@@ -670,7 +670,7 @@ app.get('/blog/:name', async (req, res) => {
                         },
 
                         Subtopics: {
-                            type: "array"
+                            type: "array",
 
                             items: {
                                 type: "string"
@@ -678,7 +678,7 @@ app.get('/blog/:name', async (req, res) => {
                         },
 
                         Contents: {
-                            type: "array"
+                            type: "array",
 
                             items: {
                                 type: "string"
