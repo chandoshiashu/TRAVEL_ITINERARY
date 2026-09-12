@@ -877,14 +877,14 @@ function Profile_SetUp(username){
 
 
 
-async function openActivity(name, image_url) {
+function openActivity(name, image_url) {
 
     showLoader();
    	window.location.href = `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
 }
 
 
-async function openBlog(name) {
+function openBlog(name) {
 
     showLoader();
 	window.location.href = `/blog/${encodeURIComponent(name)}`;
