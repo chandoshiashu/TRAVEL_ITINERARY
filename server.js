@@ -715,7 +715,10 @@ app.get('/blog/:name', async (req, res) => {
                             type: "array",
 
                             items: {
-                                type: "string"
+                                type: "array",
+                                items:{
+                                    type:"string"
+                                }
                             }
                         },
 
