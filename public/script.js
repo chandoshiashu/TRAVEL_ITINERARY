@@ -140,7 +140,7 @@ function disableDarkMode(){
 
 		const section2 = document.getElementById("section2");
 		if(section2){
-			section2.classList.add("dark_mode_on_cards");
+			section2.classList.remove("dark_mode_on_cards");
 			const cardParagraphs = document.querySelector('#section2 .catcardmedia a p');
 			cardParagraphs.forEach((element) => {
 				if(element){
