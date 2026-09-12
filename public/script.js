@@ -279,6 +279,11 @@ document.addEventListener("click", (event)=> {
 	    	document.body.classList.remove("overflow-x-hidden");
 	    }, 20000)
 	}
+
+	const suggestions = document.getElementById("suggestions");
+	if(suggestions && !suggestions.contains(event.target)){
+		suggestions.innerHTML = "";
+	}
 });
 
 const sign_up = document.getElementById('sign_up');
