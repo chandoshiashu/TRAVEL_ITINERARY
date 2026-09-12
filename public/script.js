@@ -883,7 +883,7 @@ function openActivity(name, image_url) {
    	window.location.href = `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
    	setTimeout(() => {
         hideLoader();
-    }, 2500);
+    }, 5000);
 }
 
 
@@ -894,7 +894,7 @@ function openBlog(name) {
 
 	setTimeout(() => {
         hideLoader();
-    }, 2500);
+    }, 5000);
 }
 
 
