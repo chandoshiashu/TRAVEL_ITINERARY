@@ -645,7 +645,7 @@ app.get('/blog/:name', async (req, res) => {
         1. Subtopics should be an Array. You must create a Subtopics array and all Subtopics in it.
         2. Contents should also be an Array. Each index of Contents Array must have content corresponding to the Subtopics index.
         3. Overall_Description is simply the summary of the whole blog.
-        4. The Content of Each Subtopics Must Include 3-4 Paras each. In depth Content.
+        4. The Content of Each Subtopics Must Include 3-4 Paras / 100 words each. In depth Content.
         5. Overall_Description must summarize the whole blog post.
         6. History must provide the History of All Countries in breif
         7. Why_to_Visit must take some exciting hook to go there. 
@@ -722,9 +722,32 @@ app.get('/blog/:name', async (req, res) => {
 
         const Blog = JSON.parse(response.text);
 
+
+        const ImagesResponse = Blog.Subtopics.map(async (subtopic) => {
+            try {
+                const ImageResponse = await ai.models.generateImages({
+                    model: 'imagen-3.0-generate-002',
+                    prompt: `Generate a high quality blog subtopic image related to the subtopic: ${subtopic}`,
+                    config: {
+                        numberOfImages: 1,
+                        outputMimeType: "image/jpeg",
+                        aspectRatio: "16:9"
+                    }
+                });
+
+                return ImageResponse.generatedImages[0]; 
+            } catch (error) {
+                console.error(`Failed to generate image for ${subtopic}:`, error);
+                return null;
+            }
+        });
+
+        const ImageResponseArray = await Promise.all(imagePromises);
+
         res.render('blog', {
             Blog,
-            blogImage
+            blogImage,
+            ImageResponseArray
         });
 
     } catch (error) {
