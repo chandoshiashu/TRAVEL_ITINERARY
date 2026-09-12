@@ -671,10 +671,18 @@ app.get('/blog/:name', async (req, res) => {
 
                         Subtopics: {
                             type: "array"
+
+                            items: {
+                                type: "string"
+                            }
                         },
 
                         Contents: {
                             type: "array"
+
+                            items: {
+                                type: "string"
+                            }
                         },
 
                         Overall_Description: {
