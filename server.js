@@ -742,7 +742,7 @@ app.get('/blog/:name', async (req, res) => {
             }
         });
 
-        const ImageResponseArray = await Promise.all(imagePromises);
+        const ImageResponseArray = await Promise.all(ImagesResponse);
 
         res.render('blog', {
             Blog,
