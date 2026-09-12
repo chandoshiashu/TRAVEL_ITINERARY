@@ -880,38 +880,14 @@ function Profile_SetUp(username){
 async function openActivity(name, image_url) {
 
     showLoader();
-
-    try {
-	    window.location.href =
-	        `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
-
-    } catch (error) {
-
-        console.error(error);
-
-    } finally {
-
-        hideLoader();
-    }
+   	window.location.href = `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
 }
 
 
 async function openBlog(name) {
 
     showLoader();
-
-    try {
-	    window.location.href =
-	        `/blog/${encodeURIComponent(name)}`;
-
-    } catch (error) {
-
-        console.error(error);
-
-    } finally {
-
-        hideLoader();
-    }
+	window.location.href = `/blog/${encodeURIComponent(name)}`;
 }
 
 
