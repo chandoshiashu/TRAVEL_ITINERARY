@@ -590,6 +590,7 @@ function renderSIGN_UP_FORM(element){
 	const form = document.getElementById('sign_up_form');
 	if(form){
 		form.addEventListener('submit', async (e) => {
+			showLoader();
 			// CHECKING THE DATABASE WHETHER INFO EXISTS OR NOT 
 			
 			e.preventDefault();
@@ -613,7 +614,11 @@ function renderSIGN_UP_FORM(element){
 				const data = await response.json();
 
 				if(data.success){
-					alert("LOGIN SUCCESSFULL");
+					hideLoader();
+					setTimeout(() => {
+				        alert("LOGIN SUCCESSFULL");
+				    }, 10);
+					
 					
 					document.body.classList.remove('overflow-hidden');
 					localStorage.removeItem("modelState");
