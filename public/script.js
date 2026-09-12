@@ -65,6 +65,25 @@ function enableDarkMode(){
 	if(contact_page_container){
 		contact_page_container.style.backgroundColor = "cadetblue";
 	}
+
+	const section2 = document.getElementById("section2");
+	if(section2){
+		section2.classList.add("dark_mode_on_cards");
+		const cardParagraphs = document.querySelector('#section2 .catcardmedia a p');
+		cardParagraphs.forEach((element) => {
+			if(element){
+				element.style.color = "white";
+			}
+		});
+
+		ExploreHeading = document.querySelector("#section2 .sectionHeader h1");
+		if(ExploreHeading){
+			ExploreHeading.style.color = 'white';
+		}
+	}
+
+
+
 }
 
 
@@ -117,6 +136,22 @@ function disableDarkMode(){
 		const contact_page_container = document.getElementById("contact_page_container");
 		if(contact_page_container){
 			contact_page_container.style.backgroundColor = "transparent";
+		}
+
+		const section2 = document.getElementById("section2");
+		if(section2){
+			section2.classList.add("dark_mode_on_cards");
+			const cardParagraphs = document.querySelector('#section2 .catcardmedia a p');
+			cardParagraphs.forEach((element) => {
+				if(element){
+					element.style.color = "grey";
+				}
+			});
+
+			ExploreHeading = document.querySelector("#section2 .sectionHeader h1");
+			if(ExploreHeading){
+				ExploreHeading.style.color = 'black';
+			}
 		}
 	}
 }
