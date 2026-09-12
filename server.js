@@ -725,7 +725,7 @@ app.get('/blog/:name', async (req, res) => {
 
         const ImagesResponse = Blog.Subtopics.map(async (subtopic) => {
             try {
-                const ImageResponse = await ai.models.generateImages({
+                const ImageResponse = await ai.models.generateContents({
                     model: 'gemini-3.1-flash-image',
                     prompt: `Generate a high quality blog subtopic image related to the subtopic: ${subtopic}`,
                     config: {
