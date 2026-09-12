@@ -834,7 +834,14 @@ function Profile_SetUp(username){
 
 
 					container.innerHTML = All_Itineraries;
+					if(data.itineraries.length === 0){
+						container.innerHTML = `
+							<div class="text-2xl font-bold">YOU HAVEN'T GENERATED ANY ITINERARIES. GENERATE FEW AND IT WILL BE SHOWN HERE.</div>
+						`
+					}
+
 					document.body.appendChild(container);
+
 
 					setTimeout(() => {
 						container.classList.remove('translate-x-full');
