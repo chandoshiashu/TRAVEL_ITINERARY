@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	}
 
 	else{
-		
+
 		fetch('/api/current-user')
 		    .then(response => response.json())
 		    .then(data => {
@@ -259,10 +259,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 		    });
 
 	}
-
-
-
-
 });
 
 document.addEventListener("click", (event)=> {
@@ -282,7 +278,6 @@ document.addEventListener("click", (event)=> {
 	    setTimeout(() => {
 	    	document.body.classList.remove("overflow-x-hidden");
 	    }, 20000)
-
 	}
 });
 
