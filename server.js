@@ -371,6 +371,23 @@ app.get('/contact', (req, res) => {
     res.render('contact', {title: 'contact us'});
 });
 
+
+
+
+// app.get('/blogs/hidden-gems-japan', (req, res) => {
+//     res.render('hidden_gems_japan', {title:'10 HIDDEN GEMS IN JAPAN'});
+// });
+
+// app.get('/blogs/pack-2-weeks-europe', (req, res) => {
+//     res.render('pack_2_weeks_europe', {title:'pack 2 weeks europe'});
+// });
+
+// app.get('/blogs/bora-bore', (req, res) => {
+//     res.render('bora_bora', {title:'Bora Bora'});
+// });
+
+
+
 app.get('/api/search-place', async (req, res) => {
 
     try{
@@ -593,6 +610,117 @@ app.get('/activity/:name', async (req, res) => {
     }
 
 });
+
+
+
+app.get('/blogs/:name', async (req, res) => {
+
+    try {
+
+        const blogName = req.params.name;
+        const blogImage = req.query.image_url || '/images/default.jpg';
+
+        console.log("Blog requested:", blogName);
+
+        const prompt = `
+        You are a travel information assistant.
+
+        Give detailed information about this blog title:
+
+        Blog:
+        ${blogName}
+
+        Return ONLY JSON.
+
+        Include:
+
+        - name
+        - category
+        - type
+        - description
+        - history
+        - why_visit
+        - tips
+
+        Keep the information useful for a tourist.
+        Do not invent facts.
+        `;
+
+        const response = await ai.models.generateContent({
+
+            model: "gemini-3.1-flash-lite-preview",
+
+            contents: prompt,
+
+            config: {
+                responseMimeType: "application/json",
+
+                responseSchema: {
+                    type: "object",
+
+                    properties: {
+
+                        name: {
+                            type: "string"
+                        },
+
+                        category: {
+                            type: "string"
+                        },
+
+                        type: {
+                            type: "string"
+                        },
+
+                        description: {
+                            type: "string"
+                        },
+
+                        history: {
+                            type: "string"
+                        },
+
+                        why_visit: {
+                            type: "string"
+                        },
+
+                        tips: {
+                            type: "string"
+                        }
+
+                    },
+
+                    required: [
+                        "name",
+                        "category",
+                        "type",
+                        "description",
+                        "history",
+                        "why_visit",
+                        "tips"
+                    ]
+                }
+            }
+        });
+
+        const blog = JSON.parse(response.text);
+
+        res.render('activity', {
+            blog,
+            blogImage
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).send("Could not load activity.");
+
+    }
+
+});
+
+
 
 
 app.post('/api/generate-itinerary', async (req, res) => {
