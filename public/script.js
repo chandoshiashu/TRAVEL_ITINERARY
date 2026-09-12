@@ -1074,6 +1074,7 @@ if(submit_btn){
 			    	const img = activity.image || '/images/default.jpg';
 
 			    	return `
+			    	<div class="flex flex-col">
 				        <div 
 				            class="m-3 flex flex-col justify-center items-center rounded-2xl cursor-pointer 
 				                   bg-cover bg-center h-52 sm:h-64 p-5
@@ -1083,10 +1084,13 @@ if(submit_btn){
 				            onclick="openActivity('${activity.name}', '${img}')" 
 				            style="background-image: url('${img}'); background-size: cover;"
 				        >
+				        </div>
+				        <div style="background-image: repeating-linear-gradient(45deg, black, transparent 500px);" class="rounded-2xl flex flex-col items-center text-center">
 				            <h3 class="rounded-2xl p-2 text-white font-semibold text-shadow-lg" font-weight: 600; color: #3b1f6a;>PLACE NAME : ${activity.name}</h3>
 							<p class="rounded-2xl p-2 text-white font-semibold text-shadow-lg text-[#9426ff]" style="font-weight: 1000;">TIME : ${activity.time}</p>
 							<p class="rounded-2xl p-2 text-white font-semibold text-shadow-lg text-[#1d4559]" style="font-weight: 800;">TYPE OF PLACE : ${activity.category}</p>
 				        </div>
+				    </div>
 
 			    `}).join('');
 
@@ -1107,7 +1111,8 @@ if(submit_btn){
 			}).join('');
 
 			results.innerHTML = itineraryHTML;
-			
+			results.style.backgroundImage = "repeating-linear-gradient(45deg, #46ac8e, transparent 800px);"
+			results.style.fontFamily = 'monospace';
 			submit_btn.disabled = false;
 			submit_text.textContent = "Submit";
 
