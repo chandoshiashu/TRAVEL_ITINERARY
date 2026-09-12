@@ -612,6 +612,44 @@ app.get('/activity/:name', async (req, res) => {
 });
 
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+async function GenerateBlogImages(subtopics){
+
+    const ImagesArr = [];
+
+    for(const subtopic of subtopics){
+
+        try{
+            const ImageResponse = await ai.models.generateContent({
+                model: "gemini-3.1-flash-lite-image",
+                contents: `Generate a High Quality Image related to the subtopic : ${subtopic}`
+            });
+
+            const ImagePart = ImageResponse.candidates?.[0]?.content?.parts?.find(
+                (p) => p.inlineData?.mimeType?.startsWith('image/')
+            );
+
+            if(ImagePart && ImagePart.inlineData?.data){
+                const dataUrl = `data:${imagePart.inlineData.mimeType};base64,${imagePart.inlineData.data}`;
+                ImagesArr.push(dataUrl);
+            }
+            else{
+                ImagesArr.push("/images/default.jpg");
+            }
+
+            await delay(4000);
+        } catch(error){
+            console.error("GOT ERROR IN GENERATING THE IMAGE :- ", error);
+            ImagesArr.push("/images/default.jpg");
+        }
+
+    }
+
+    return ImagesArr;
+
+}
+
+
 app.get('/blog/:name', async (req, res) => {
 
     try {
@@ -723,23 +761,7 @@ app.get('/blog/:name', async (req, res) => {
         const Blog = JSON.parse(response.text);
 
 
-        const ImagesResponse = Blog.Subtopics.map(async (subtopic) => {
-            try {
-                const ImageResponse = await ai.models.generateContent({
-                    model: 'gemini-3.1-flash-image',
-                    contents: `Generate a high quality blog subtopic image related to the subtopic: ${subtopic}. Aspect ratio 16:9.`
-                });
-
-                console.log(ImagesResponse);
-
-                return ImageResponse.generatedImages[0]; 
-            } catch (error) {
-                console.error(`Failed to generate image for ${subtopic}:`, error);
-                return null;
-            }
-        });
-
-        const ImageResponseArray = await Promise.all(ImagesResponse);
+        const ImageResponseArray = await GenerateBlogImages(Blog.Subtopics);
 
         res.render('blog', {
             Blog,
