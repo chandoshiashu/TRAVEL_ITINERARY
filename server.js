@@ -764,12 +764,11 @@ app.get('/blog/:name', async (req, res) => {
         const Blog = JSON.parse(response.text);
 
 
-        const ImageResponseArray = await GenerateBlogImages(Blog.Subtopics);
+        // const ImageResponseArray = await GenerateBlogImages(Blog.Subtopics);
 
         res.render('blog', {
             Blog,
-            blogImage,
-            ImageResponseArray
+            blogImage
         });
 
     } catch (error) {
