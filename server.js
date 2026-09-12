@@ -363,7 +363,7 @@ app.post('/api/credentials', async (req, res) => {
 
 
 
-app.get('/home', (req, res) => {
+app.get(['/home', '/'], (req, res) => {
     res.render('index', {title: 'Roamio', username: req.user ? req.user.username : null});
 });
 
