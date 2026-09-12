@@ -111,7 +111,6 @@ function disableDarkMode(){
 
 		if(window.scrollY > 50){
 			nav_element.style.backgroundColor = "#E7F5DC";
-			nav_element.style.color = 'black';
 			if(logo_anchor){
 				logo_anchor.style.backgroundColor = "bg-[rgb(114, 129, 86)]";
 			}
@@ -606,7 +605,7 @@ function renderSIGN_UP_FORM(element){
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({
-						username: username.value,
+						username: username.value.trim(),
 						password: password.value
 					})
 				});
@@ -629,13 +628,19 @@ function renderSIGN_UP_FORM(element){
 					Profile_SetUp(username.value);
 
 				} else{
-					alert(data.message);
+					hideLoader();
+					setTimeout(() => {
+				        alert(data.message);
+				    }, 10);
 					username.value = '';
 					password.value = '';
 				}
 
 			} catch(error){
-				alert("Could not reach the backend API");
+				hideLoader();
+				setTimeout(() => {
+					alert("Could not reach the backend API");
+				}, 10);
 			}
 
 		});

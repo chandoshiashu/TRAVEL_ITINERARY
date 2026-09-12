@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="scroll-smooth">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,6 +144,10 @@
     background-color: aliceblue;
 }
 
+#form{
+	transition: all 0.3s ease-in-out; 
+}
+
 
 @media screen and (max-width: 796px) {
 
@@ -166,6 +170,8 @@
     }
 }
 
+
+
 </style>
 <body class="flex items-center bg-slate-300 flex-col p-2 transition-all baloo-bhai-2-<uniquifier>">
 
@@ -173,7 +179,7 @@
 
 	<div class="h-100 sm:h-125 lg:h-150 w-full p-3 flex flex-col justify-start items-center text-white bg-cover bg-no-repeat bg-center rounded-2xl" 
 	     style="background-image: url('./images/image_bg_2.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover; transition: background-image 1s ease-in-out;" id="bg_image">
-	     <a href="#form" class="bg-[#728156] border-3 border-[#235347] text-center text-white transition-all font-semibold cursor-cursor-pointer px-5 py-3 mb-20 rounded-4xl hover:bg-[#163832]  hover:transition-all" id="custom_plan">PLAN ITINERARIES</a>
+	     <a href="#form" class="bg-[#728156] border-3 border-[#235347] text-center text-white transition-all font-semibold cursor-pointer px-5 py-3 mb-20 rounded-4xl hover:bg-[#163832]  transition-all duration-300" id="custom_plan">PLAN ITINERARIES</a>
 	</div>
 
 
@@ -211,25 +217,25 @@
 		</div>
 		<div class="grid grid-cols-4 blogcardmedia">
 
-			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw]" onclick="openBlog('The-Ultimate-3-Day-Weekend-Guide-to-Tokyo-What-to-Eat-See-and-Do')">
+			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw] mt-10" onclick="openBlog('The-Ultimate-3-Day-Weekend-Guide-to-Tokyo-What-to-Eat-See-and-Do')">
 				<img src="/images/JAPAN.jpg" class="w-full h-[60%]">
 				<h2 class="mt-[15px] ml-[15px] pb-[10px] Macondo font-bold text-4xl">Tokyo</h2>
 				<p class="section3Cardp ml-[15px] Nato-Sans mb-[15px] text-[grey]">The Ultimate 3-Day Weekend Guide to Tokyo: What to Eat, See, and Do</p>
 			</a>
 
-			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw]" onclick="openBlog('A-4-Day-Road-Trip-Through-the-Swiss-Alps-The-Scenic-Route')">
+			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw] mt-10" onclick="openBlog('A-4-Day-Road-Trip-Through-the-Swiss-Alps-The-Scenic-Route')">
 				<img src="/images/swiss_alps.jpg" class="w-full h-[60%]">
 				<h2 class="mt-[15px] ml-[15px] pb-[10px] Macondo font-bold text-4xl">Swiss Alps</h2>
 				<p class="section3Cardp ml-[15px] Nato-Sans mb-[15px] text-[grey]">A 4-Day Road Trip Through the Swiss Alps: The Scenic Route</p>
 			</a>
 
-			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw]" onclick="openBlog('The-Perfect-5-Day-Bali-for-First-Time-Explorers')">
+			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw] mt-10" onclick="openBlog('The-Perfect-5-Day-Bali-for-First-Time-Explorers')">
 				<img src="/images/bali.jpg" class="w-full h-[60%]">
 				<h2 class="mt-[15px] ml-[15px] pb-[10px] Macondo font-bold text-4xl">Bali</h2>
 				<p class="section3Cardp ml-[15px] Nato-Sans mb-[15px] text-[grey]">The Perfect 5-Day Bali for First-Time Explorers</p>
 			</a>
 
-			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw]" onclick="openBlog('How-to-Spend-7-Magic-Days-in-Paris-on-a-Strict-Budget')">
+			<a class="mr-[15px] cursor-pointer BlogCard LiTransition max-w-[125vw] mt-10" onclick="openBlog('How-to-Spend-7-Magic-Days-in-Paris-on-a-Strict-Budget')">
 				<img src="/images/paris.jpg" class="w-full h-[60%]">
 				<h2 class="mt-[15px] ml-[15px] pb-[10px] Macondo font-bold text-4xl">Paris</h2>
 				<p class="section3Cardp ml-[15px] Nato-Sans mb-[15px] text-[grey]">How to Spend 7 Magic Days in Paris on a Strict Budget</p>
