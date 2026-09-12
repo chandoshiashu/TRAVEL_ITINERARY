@@ -896,6 +896,25 @@ async function openActivity(name, image_url) {
 }
 
 
+async function openBlog(name) {
+
+    showLoader();
+
+    try {
+	    window.location.href =
+	        `/blog/${encodeURIComponent(name)}`;
+
+    } catch (error) {
+
+        console.error(error);
+
+    } finally {
+
+        hideLoader();
+    }
+}
+
+
 function showLoader() {
     const loader = document.getElementById('loader');
 
