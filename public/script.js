@@ -881,6 +881,9 @@ function openActivity(name, image_url) {
 
     showLoader();
    	window.location.href = `/activity/${encodeURIComponent(name)}?image_url=${encodeURIComponent(image_url)}`;
+   	setTimeout(() => {
+        hideLoader();
+    }, 5000);
 }
 
 
@@ -888,6 +891,10 @@ function openBlog(name) {
 
     showLoader();
 	window.location.href = `/blog/${encodeURIComponent(name)}`;
+
+	setTimeout(() => {
+        hideLoader();
+    }, 5000);
 }
 
 
