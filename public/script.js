@@ -216,6 +216,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 	const Is_Logged_In = localStorage.getItem("IsLogged");
 	const nav_element = document.getElementById('main-nav');
 
+	console.log("LOGIN STATUS:", Is_Logged_In);
+	console.log("USERNAME:", localStorage.getItem("username"));
+
 	if(Is_Logged_In === "Yes"){
 		Profile_SetUp(localStorage.getItem("username"));
 	}
