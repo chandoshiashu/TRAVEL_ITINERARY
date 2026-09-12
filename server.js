@@ -727,13 +727,10 @@ app.get('/blog/:name', async (req, res) => {
             try {
                 const ImageResponse = await ai.models.generateContent({
                     model: 'gemini-3.1-flash-image',
-                    prompt: `Generate a high quality blog subtopic image related to the subtopic: ${subtopic}`,
-                    config: {
-                        numberOfImages: 1,
-                        outputMimeType: "image/jpeg",
-                        aspectRatio: "16:9"
-                    }
+                    contents: `Generate a high quality blog subtopic image related to the subtopic: ${subtopic}. Aspect ratio 16:9.`
                 });
+
+                console.log(ImagesResponse);
 
                 return ImageResponse.generatedImages[0]; 
             } catch (error) {
