@@ -87,7 +87,15 @@ function enableDarkMode(){
 		}
 	}
 
+	const blog_header = document.getElementById("blog_header");
+	if(blog_header){
+		blog_header.style.color = "white";
+	}
 
+	const activity_header = document.getElementById("activity_header");
+	if(activity_header){
+		activity_header.style.color = "white";
+	}
 
 }
 
@@ -163,6 +171,18 @@ function disableDarkMode(){
 				BlogHeading.style.color = 'black';
 			}
 		}
+
+
+		const blog_header = document.getElementById("blog_header");
+		if(blog_header){
+			blog_header.style.color = "black";
+		}
+
+		const activity_header = document.getElementById("activity_header");
+		if(activity_header){
+			activity_header.style.color = "black";
+		}
+
 	}
 }
 
