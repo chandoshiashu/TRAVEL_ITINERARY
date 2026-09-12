@@ -707,10 +707,10 @@ function Profile_SetUp(username){
 						            onclick="openActivity('${activity.name}', '${img}')" 
 						            style="background-image: url('${img}'); background-size: cover;"
 						        >
-						            <h3 class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
-						            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
-						            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
 						        </div>
+					            <h3 class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
+					            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
+					            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
 
 						    `}).join('');
 
@@ -1076,10 +1076,10 @@ if(submit_btn){
 			            onclick="openActivity('${activity.name}', '${img}')" 
 			            style="background-image: url('${img}'); background-size: cover;"
 			        >
-			            <h3 class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
-			            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
-			            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
 			        </div>
+		            <h3 class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
+		            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
+		            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
 
 			    `}).join('');
 
