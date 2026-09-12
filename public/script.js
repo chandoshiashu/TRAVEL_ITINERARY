@@ -80,6 +80,11 @@ function enableDarkMode(){
 		if(ExploreHeading){
 			ExploreHeading.style.color = 'white';
 		}
+
+		BlogHeading = document.querySelector("#section3 .sectionHeader h1");
+		if(BlogHeading){
+			BlogHeading.style.color = 'white';
+		}
 	}
 
 
@@ -151,6 +156,11 @@ function disableDarkMode(){
 			ExploreHeading = document.querySelector("#section2 .sectionHeader h1");
 			if(ExploreHeading){
 				ExploreHeading.style.color = 'black';
+			}
+
+			BlogHeading = document.querySelector("#section3 .sectionHeader h1");
+			if(BlogHeading){
+				BlogHeading.style.color = 'black';
 			}
 		}
 	}
