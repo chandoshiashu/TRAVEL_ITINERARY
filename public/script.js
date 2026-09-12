@@ -709,11 +709,11 @@ function Profile_SetUp(username){
 							            style="background-image: url('${img}'); background-size: cover;"
 							        >
 							        </div>
-							        <div>
-							            <h3 class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
-							            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
-							            <p class="bg-black/45 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
-							         </div>
+									<div style="background-image: repeating-linear-gradient(45deg, black, transparent 500px);" class="rounded-2xl flex flex-col items-center text-center">
+							            <h3 class="rounded-2xl p-2 text-white font-semibold text-shadow-lg">PLACE NAME : ${activity.name}</h3>
+							            <p class="rounded-2xl p-2 text-white font-semibold text-shadow-lg">TIME : ${activity.time}</p>
+							            <p class="rounded-2xl p-2 text-white font-semibold text-shadow-lg">TYPE OF PLACE : ${activity.category}</p>
+							        </div>
 						         </div>
 
 						    `}).join('');
@@ -1082,10 +1082,10 @@ if(submit_btn){
 				            style="background-image: url('${img}'); background-size: cover;"
 				        >
 				        </div>
-				        <div>
-				            <h3 class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.name}</h3>
-				            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.time}</p>
-				            <p class="bg-black/40 rounded-2xl p-2 text-white font-semibold text-shadow-lg">${activity.category}</p>
+				        <div style="background-image: repeating-linear-gradient(45deg, black, transparent 500px);" class="rounded-2xl flex flex-col items-center text-center">
+				            <h3 class="rounded-2xl p-2 text-white font-semibold text-shadow-lg">PLACE NAME : ${activity.name}</h3>
+				            <p class="rounded-2xl p-2 text-white font-semibold text-shadow-lg">TIME : ${activity.time}</p>
+				            <p class="rounded-2xl p-2 text-white font-semibold text-shadow-lg">TYPE OF PLACE : ${activity.category}</p>
 				        </div>
 				    </div>
 
