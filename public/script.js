@@ -219,17 +219,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 	console.log("LOGIN STATUS:", Is_Logged_In);
 	console.log("USERNAME:", localStorage.getItem("username"));
 
-	if(Is_Logged_In === "Yes"){
-		Profile_SetUp(localStorage.getItem("username"));
-	}
-
-
 	const Profile_Pic_Upload = document.getElementById("Profile_Pic")
 	const savedPic = localStorage.getItem('userProfilePic');
     if (savedPic && Profile_Pic_Upload) {
         Profile_Pic_Upload.style.backgroundImage = savedPic;
     }
-
 
 
     const response = await fetch('/api/crypto_id');
@@ -238,26 +232,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Crypto ID:", data.username);
 
 
+	if(Is_Logged_In === "Yes"){
+		Profile_SetUp(localStorage.getItem("username"));
+	}
 
-	fetch('/api/current-user')
-        .then(response => response.json())
-        .then(data => {
+	else{
+		
+		fetch('/api/current-user')
+		    .then(response => response.json())
+		    .then(data => {
 
-            if (data.username) {
-                localStorage.setItem("username", data.username);
-                localStorage.setItem("IsLogged", "Yes");
-                Profile_SetUp(data.username);
-            }
+		        if (data.username) {
+		            localStorage.setItem("username", data.username);
+		            localStorage.setItem("IsLogged", "Yes");
+		            Profile_SetUp(data.username);
+		        }
 
-        	else {
+		    	else {
 
-	            localStorage.removeItem("username");
-	            localStorage.removeItem("IsLogged");
-	        }
-        })
-        .catch(error => {
-            console.error("Could not check login:", error);
-        });
+		            localStorage.removeItem("username");
+		            localStorage.removeItem("IsLogged");
+		        }
+		    })
+		    .catch(error => {
+		        console.error("Could not check login:", error);
+		    });
+
+	}
+
+
 
 
 });
