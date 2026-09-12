@@ -15,6 +15,7 @@
 </head>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600&display=swap');
@@ -26,71 +27,140 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 
-.Tapestry{font-family: 'Tapestry', cursive;}
-.Ubuntu{font-family: 'Ubuntu', sans-serif;}
-.Source-Sans-3{font-family: 'Source Sans 3', sans-serif;}
-.Nato-Sans{font-family: 'Noto Sans', sans-serif;}
-.Merry-Whethers{font-family: 'Merriweather', serif;}
-.Pt-Sans{font-family: 'PT Sans', sans-serif;}
-.Macondo{font-family: 'Macondo', cursive;}
-.Plus-Jakarta-Sans{font-family: 'Plus Jakarta Sans', sans-serif;}
-.Inter{font-family: 'Inter', sans-serif;}
-
-.CatCard:hover{
-	text-shadow: 1px 0px 1px cyan;
-	box-shadow: 5px 10px 28px;
+.Tapestry {
+    font-family: 'Tapestry', cursive;
 }
 
-.section2Cardp{max-width: 77.5%;}
-.section3Cardp{max-width: 85%;}
-
-.BlogCard{color: cadetblue;}
-.BlogCard:hover{
-	text-shadow: 1px 1px 1px cyan;
-	box-shadow: 0px 0px 5px 5px darkcyan;
-	color: blue;
+.Ubuntu {
+    font-family: 'Ubuntu', sans-serif;
 }
 
-.section2Cardp{max-width: 77.5%;}
+.Source-Sans-3 {
+    font-family: 'Source Sans 3', sans-serif;
+}
 
-.LiTransition{transition: 0.25s ease-in-out;} 
-.LiTransition-2{transition: 0.5s ease-in-out;} 
-.grid-col-3{grid-template-columns: repeat(3, 1fr);}
+.Nato-Sans {
+    font-family: 'Noto Sans', sans-serif;
+}
 
-.dark_mode_on_cards a{
-	background-image: repeating-linear-gradient(45deg, #000000, transparent 1000px);
+.Merry-Whethers {
+    font-family: 'Merriweather', serif;
+}
+
+.Pt-Sans {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.Macondo {
+    font-family: 'Macondo', cursive;
+}
+
+.Plus-Jakarta-Sans {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.Inter {
+    font-family: 'Inter', sans-serif;
+}
+
+
+.CatCard {
+    transition: 0.25s ease-in-out;
+}
+
+.CatCard:hover {
+    text-shadow: 1px 0px 1px cyan;
+    box-shadow: 5px 10px 28px;
+}
+
+.section2Cardp {
+    max-width: 77.5%;
+}
+
+
+.BlogCard {
+    color: cadetblue;
+    transition: 0.25s ease-in-out;
+}
+
+.BlogCard:hover {
+    text-shadow: 1px 1px 1px cyan;
+    box-shadow: 0px 0px 5px 5px darkcyan;
+    color: blue;
+}
+
+.section3Cardp {
+    max-width: 85%;
+}
+
+
+.BlogPost {
+    padding: 30px 10px;
+    font-size: 1.375rem;
+    font-family: 'PT Sans', sans-serif;
+    background-color: #f6f2fe;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.BlogPost p {
+    font-size: 1.25rem;
+    margin: 15px 5px;
+}
+
+.BlogPost .Date {
+    color: grey;
+}
+
+.BlogPost .Date span {
+    color: blue;
+}
+
+
+.LiTransition {
+    transition: 0.25s ease-in-out;
+}
+
+.LiTransition-2 {
+    transition: 0.5s ease-in-out;
+}
+
+
+.dark_mode_on_cards a {
+    background-image: repeating-linear-gradient(
+        45deg,
+        #000000,
+        transparent 1000px
+    );
+
     color: bisque;
 }
 
 
-.BlogPost{
-	padding: 30px 10px;
-	font-size: 1.375rem;
-	font-family: 'PT Sans', sans-serif;
-	background-color: #f6f2fe;
-	border-radius: 10px;
-	margin-top: 20px;
-}
-
-.BlogPost p{
-	font-size: 1.25rem;
-	margin: 15px 5px;
+.bg-aliceblue {
+    background-color: aliceblue;
 }
 
 
-@media screen and (max-width: 796px){
-	.catcardmedia {grid-template-columns: repeat(1, 1fr);
-		justify-items: center;
-	}
-	.catcardmedia div{margin-top: 5vh; box-shadow: 0px 0px 0.5px black;
-		margin-right: 0px;}
-	.sectionHeader{width: 50%; margin: auto;}
-}
+@media screen and (max-width: 796px) {
 
-@media screen and (max-width: 1081px){
-	#section2 #div2, #section2 #div3{
-		padding: 2px 2px;
-	}
+    .catcardmedia,
+    .blogcardmedia {
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+    }
+
+    .catcardmedia > div,
+    .blogcardmedia > div {
+        margin-top: 5vh;
+        box-shadow: 0px 0px 0.5px black;
+        margin-right: 0;
+    }
+
+    .sectionHeader {
+        width: 50%;
+        margin: auto;
+    }
 }
 
 </style>
@@ -110,7 +180,7 @@
 			<p class="Nato-Sans text-[grey] font-semibold">Get an Idea, click over cards.</p>
 			<h1 class="Pt-Sans font-bold text-3xl">Explore</h1>
 		</div>
-		<div class="grid grid-col-3 catcardmedia"> 
+		<div class="grid grid-cols-3 catcardmedia"> 
 			<a class="mr-3 pb-7 bg-white mt-10 lg:mt-0 cursor-pointer CatCard LiTransition max-w-[125vw] rounded-xl" href="/blog/hidden-gems-japan">
 				<img src="/images/JAPAN.jpg" class="w-[100vw] h-[60%]">
 				<h1 class="text-center mt-10 pb-2 Merry-Whethers font-bold text-3xl">JAPAN</h1>
