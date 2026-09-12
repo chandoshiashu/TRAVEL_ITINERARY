@@ -683,7 +683,7 @@ app.get('/blog/:name', async (req, res) => {
         1. Subtopics should be an Array. You must create a Subtopics array and all Subtopics in it.
         2. Contents should also be an Array. Each index of Contents Array must have content corresponding to the Subtopics index.
         3. Overall_Description is simply the summary of the whole blog.
-        4. The Content of Each Subtopics Must Include 3-4 Paras / 50 words each. In depth Content.
+        4. The Content of Each Subtopics Must Include 2-3 Paras / 50 words each. In depth Content.
         5. Overall_Description must summarize the whole blog post.
         6. History must provide the History of All Countries in breif
         7. Why_to_Visit must take some exciting hook to go there. 
