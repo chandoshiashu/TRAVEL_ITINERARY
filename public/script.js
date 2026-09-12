@@ -974,7 +974,6 @@ window.addEventListener('scroll', () => {
 	if(dark_mode.innerHTML != "LIGHT MODE"){
 		if(window.scrollY > 50){
 			nav.style.backgroundColor = "#E7F5DC";
-			nav.style.color = 'black';
 			nav.classList.remove('rounded-2xl');
 		}else{
 			nav.style.backgroundColor = '#728156';
